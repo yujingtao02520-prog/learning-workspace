@@ -1,0 +1,14 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PyTorch checkpoints and generated logs/samples
+outputs/
+
+# Dataset folders
+data/
+
+# OS files
+.DS_Store
+Thumbs.db
