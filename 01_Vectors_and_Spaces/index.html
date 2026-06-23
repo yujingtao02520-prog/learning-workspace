@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第一节：向量与高维嵌入交互实验室</title>
+    <!-- 引入高档字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: radial-gradient(circle at top right, #181824, #0b0f19);
+            --card-bg: rgba(23, 23, 37, 0.7);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --color-u: #ff5733;
+            --color-v: #10b981;
+            --color-w: #3b82f6;
+            --color-scaled: #eab308;
+            --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 20px 40px;
+            background: rgba(11, 15, 25, 0.8);
+            border-bottom: 1px solid var(--card-border);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title h1 {
+            font-size: 20px;
+            font-weight: 700;
+            background: linear-gradient(to right, #a78bfa, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-title p {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 12px;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+        }
+
+        .tab-btn.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .main-container {
+            display: flex;
+            flex: 1;
+            padding: 24px;
+            gap: 24px;
+            max-width: 1600px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .left-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 500px;
+        }
+
+        .right-panel {
+            flex: 2;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 500px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 20px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-left: 3px solid #3b82f6;
+            padding-left: 8px;
+        }
+
+        .control-group {
+            margin-bottom: 16px;
+        }
+
+        .control-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        input[type="range"] {
+            flex: 1;
+            accent-color: #3b82f6;
+            cursor: pointer;
+        }
+
+        .value-badge {
+            font-family: monospace;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            min-width: 45px;
+            text-align: center;
+        }
+
+        .vector-readout {
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 13px;
+            line-height: 1.6;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .readout-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+
+        .readout-line:last-child {
+            margin-bottom: 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 4px;
+            margin-top: 4px;
+        }
+
+        canvas {
+            background: #0d111d;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: crosshair;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        .interactive-tip {
+            position: absolute;
+            bottom: 16px;
+            left: 24px;
+            font-size: 12px;
+            color: var(--text-muted);
+            background: rgba(0,0,0,0.6);
+            padding: 6px 12px;
+            border-radius: 20px;
+            pointer-events: none;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* 相似度面板专用 */
+        .embedding-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .embedding-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .embedding-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #3b82f6;
+        }
+
+        .embedding-item.active {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: #3b82f6;
+        }
+
+        .word-tag {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .color-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .similarity-score {
+            font-family: monospace;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        /* 隐藏不激活的标签面板 */
+        .tab-content {
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .tab-content.active {
+            display: flex;
+        }
+
+        .math-expr {
+            color: #a78bfa;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-title">
+            <h1>向量与高维嵌入交互实验室</h1>
+            <p>从物理几何到自然语言处理 (Embedding)</p>
+        </div>
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="switchTab('basics')">1. 向量加法与数乘</button>
+            <button class="tab-btn" onclick="switchTab('embedding')">2. 词嵌入与相似度</button>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- 左侧面板 -->
+        <div class="left-panel">
+            
+            <!-- 面板一：向量加法与数乘 -->
+            <div id="content-basics" class="tab-content active">
+                <div class="card">
+                    <div class="card-title">向量控制中心</div>
+                    
+                    <div class="control-group">
+                        <div class="control-label">
+                            <span>向量 <span style="color: var(--color-u)">u<sub>x</sub></span> (红色)</span>
+                            <span class="value-badge" id="val-ux">3.0</span>
+                        </div>
+                        <div class="slider-wrapper">
+                            <input type="range" id="slider-ux" min="-5" max="5" step="0.1" value="3">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="control-label">
+                            <span>向量 <span style="color: var(--color-u)">u<sub>y</sub></span> (红色)</span>
+                            <span class="value-badge" id="val-uy">1.0</span>
+                        </div>
+                        <div class="slider-wrapper">
+                            <input type="range" id="slider-uy" min="-5" max="5" step="0.1" value="1">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="control-label">
+                            <span>向量 <span style="color: var(--color-v)">v<sub>x</sub></span> (绿色)</span>
+                            <span class="value-badge" id="val-vx">1.0</span>
+                        </div>
+                        <div class="slider-wrapper">
+                            <input type="range" id="slider-vx" min="-5" max="5" step="0.1" value="1">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="control-label">
+                            <span>向量 <span style="color: var(--color-v)">v<sub>y</sub></span> (绿色)</span>
+                            <span class="value-badge" id="val-vy">3.0</span>
+                        </div>
+                        <div class="slider-wrapper">
+                            <input type="range" id="slider-vy" min="-5" max="5" step="0.1" value="3">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="control-label">
+                            <span>数乘系数 <span style="color: var(--color-scaled)">c</span> (黄色)</span>
+                            <span class="value-badge" id="val-c">1.5</span>
+                        </div>
+                        <div class="slider-wrapper">
+                            <input type="range" id="slider-c" min="-3" max="3" step="0.1" value="1.5">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">代数信息输出</div>
+                    <div class="vector-readout">
+                        <div class="readout-line">
+                            <span>向量 u:</span>
+                            <span style="color: var(--color-u)" id="readout-u">[3.0, 1.0]</span>
+                        </div>
+                        <div class="readout-line">
+                            <span>向量 v:</span>
+                            <span style="color: var(--color-v)" id="readout-v">[1.0, 3.0]</span>
+                        </div>
+                        <div class="readout-line">
+                            <span>和向量 u + v:</span>
+                            <span style="color: var(--color-w)" id="readout-w">[4.0, 4.0]</span>
+                        </div>
+                        <div class="readout-line">
+                            <span>数乘 c * u:</span>
+                            <span style="color: var(--color-scaled)" id="readout-scaled">[4.5, 1.5]</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 面板二：嵌入相似度 -->
+            <div id="content-embedding" class="tab-content">
+                <div class="card">
+                    <div class="card-title">语义嵌入数据库 (2D)</div>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px; line-height: 1.4;">
+                        这里模拟了一个微型的二维语义嵌入空间。
+                        横轴代表 <span class="math-expr">"是否为食物"</span>，纵轴代表 <span class="math-expr">"是否有生命"</span>。
+                        点击以下单词以计算它与其他词的余弦相似度：
+                    </p>
+                    <div class="embedding-list" id="emb-list">
+                        <!-- 由JS填充 -->
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">几何相似度数学</div>
+                    <div class="vector-readout" style="line-height: 1.8;">
+                        <div>夹角余弦公式：</div>
+                        <div style="font-family: serif; font-size: 15px; text-align: center; margin: 8px 0; color: #a78bfa;">
+                            cos(θ) = (A · B) / (||A|| ||B||)
+                        </div>
+                        <div style="font-size: 13px; color: var(--text-muted);">
+                            当夹角 θ = 0° 时，余弦值为 1（同向，语义一致）；<br>
+                            当夹角 θ = 90° 时，余弦值为 0（垂直，语义正交）；<br>
+                            当夹角 θ = 180° 时，余弦值为 -1（反向，语义相反）。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 右侧画布区 -->
+        <div class="right-panel">
+            <canvas id="mainCanvas" width="600" height="600"></canvas>
+            <div class="interactive-tip" id="canvas-tip">
+                提示：用鼠标在网格内按下并拖拽可以动态改变向量！
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 初始化变量
+        let currentTab = 'basics';
+        const canvas = document.getElementById('mainCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // 向量加法/数乘数据
+        let u_vec = { x: 3.0, y: 1.0 };
+        let v_vec = { x: 1.0, y: 3.0 };
+        let c_scalar = 1.5;
+
+        // 拖拽控制变量
+        let dragTarget = null; // 'u', 'v' 或者是 null
+        
+        // 词嵌入数据
+        const wordColors = {
+            'apple': '#ef4444',
+            'banana': '#facc15',
+            'pizza': '#f97316',
+            'cat': '#3b82f6',
+            'dog': '#06b6d4'
+        };
+        const embeddings = {
+            'apple': { x: 0.9, y: 0.1 },
+            'banana': { x: 0.95, y: 0.05 },
+            'pizza': { x: 0.85, y: 0.15 },
+            'cat': { x: 0.1, y: 0.95 },
+            'dog': { x: 0.05, y: 0.9 }
+        };
+        let queryWord = 'apple';
+
+        // 坐标变换辅助
+        const scale = 50; // 1个单位代表50像素
+        const center = { x: canvas.width / 2, y: canvas.height / 2 };
+
+        // 相似度专用坐标原点 (左下角，为了全部表示正值)
+        const embCenter = { x: 80, y: 520 };
+        const embScale = 420; // 0-1的值拉大
+
+        function toScreen(mathPt) {
+            if (currentTab === 'basics') {
+                return {
+                    x: center.x + mathPt.x * scale,
+                    y: center.y - mathPt.y * scale
+                };
+            } else {
+                return {
+                    x: embCenter.x + mathPt.x * embScale,
+                    y: embCenter.y - mathPt.y * embScale
+                };
+            }
+        }
+
+        function toMath(screenPt) {
+            if (currentTab === 'basics') {
+                return {
+                    x: (screenPt.x - center.x) / scale,
+                    y: (center.y - screenPt.y) / scale
+                };
+            } else {
+                return {
+                    x: (screenPt.x - embCenter.x) / embScale,
+                    y: (embCenter.y - screenPt.y) / embScale
+                };
+            }
+        }
+
+        // 切换标签
+        function switchTab(tabName) {
+            currentTab = tabName;
+            
+            // 切换 Tab 按钮激活状态
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // 切换面板内容
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.getElementById(`content-${tabName}`).classList.add('active');
+
+            // 更改画布操作提示
+            const tip = document.getElementById('canvas-tip');
+            if (tabName === 'basics') {
+                tip.innerHTML = '提示：可以用鼠标按住向量箭头终点直接进行拖拽！';
+            } else {
+                tip.innerHTML = '提示：点击左侧列表的不同单词，观察空间中向量夹角变化。';
+            }
+
+            draw();
+        }
+
+        // 数学公式计算
+        function dotProduct(v1, v2) {
+            return v1.x * v2.x + v1.y * v2.y;
+        }
+
+        function norm(v) {
+            return Math.sqrt(v.x * v.x + v.y * v.y);
+        }
+
+        function cosineSimilarity(v1, v2) {
+            const dot = dotProduct(v1, v2);
+            const n1 = norm(v1);
+            const n2 = norm(v2);
+            if (n1 === 0 || n2 === 0) return 0;
+            return dot / (n1 * n2);
+        }
+
+        // 绘制箭头函数
+        function drawArrow(from, to, color, width = 2, isDashed = false) {
+            ctx.beginPath();
+            ctx.strokeStyle = color;
+            ctx.fillStyle = color;
+            ctx.lineWidth = width;
+            if (isDashed) {
+                ctx.setLineDash([5, 5]);
+            } else {
+                ctx.setLineDash([]);
+            }
+            ctx.moveTo(from.x, from.y);
+            ctx.lineTo(to.x, to.y);
+            ctx.stroke();
+
+            // 绘制箭头尖端
+            ctx.setLineDash([]);
+            const angle = Math.atan2(to.y - from.y, to.x - from.x);
+            const arrowLength = 12;
+            ctx.beginPath();
+            ctx.moveTo(to.x, to.y);
+            ctx.lineTo(to.x - arrowLength * Math.cos(angle - Math.PI / 6), to.y - arrowLength * Math.sin(angle - Math.PI / 6));
+            ctx.lineTo(to.x - arrowLength * Math.cos(angle + Math.PI / 6), to.y - arrowLength * Math.sin(angle + Math.PI / 6));
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        // 主画图函数
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (currentTab === 'basics') {
+                drawGrid();
+                
+                const zero = toScreen({ x: 0, y: 0 });
+                const screen_u = toScreen(u_vec);
+                const screen_v = toScreen(v_vec);
+                
+                // 1. 绘制向量 u (红色)
+                drawArrow(zero, screen_u, varColor('--color-u'), 3);
+                
+                // 2. 绘制向量 v (虚线平移版，从 u 终点出发)
+                const screen_v_shifted = toScreen({ x: u_vec.x + v_vec.x, y: u_vec.y + v_vec.y });
+                drawArrow(screen_u, screen_v_shifted, varColor('--color-v'), 2, true);
+                
+                // 同时也绘制原始 v 向量
+                drawArrow(zero, screen_v, 'rgba(16, 185, 129, 0.4)', 2);
+
+                // 3. 绘制和向量 u + v (蓝色)
+                drawArrow(zero, screen_v_shifted, varColor('--color-w'), 3.5);
+
+                // 4. 绘制数乘向量 c * u (黄色)
+                const scaled_u = { x: u_vec.x * c_scalar, y: u_vec.y * c_scalar };
+                const screen_scaled = toScreen(scaled_u);
+                drawArrow(zero, screen_scaled, varColor('--color-scaled'), 1.5);
+
+                // 绘制拖动把手 (微小的发光圈)
+                drawHandle(screen_u, varColor('--color-u'));
+                drawHandle(screen_v, 'rgba(16, 185, 129, 0.6)');
+
+                // 标注文字
+                ctx.fillStyle = varColor('--color-u');
+                ctx.font = 'bold 12px sans-serif';
+                ctx.fillText(`u`, screen_u.x + 8, screen_u.y - 8);
+
+                ctx.fillStyle = varColor('--color-v');
+                ctx.fillText(`v`, screen_v.x + 8, screen_v.y - 8);
+
+                ctx.fillStyle = varColor('--color-w');
+                ctx.fillText(`u+v`, screen_v_shifted.x + 8, screen_v_shifted.y - 12);
+
+                ctx.fillStyle = varColor('--color-scaled');
+                ctx.fillText(`${c_scalar.toFixed(1)}u`, screen_scaled.x - 20, screen_scaled.y + 16);
+
+            } else {
+                drawEmbeddingGrid();
+
+                const zero = toScreen({ x: 0, y: 0 });
+                const queryVec = embeddings[queryWord];
+                const screenQuery = toScreen(queryVec);
+
+                // 绘制各个词向量
+                for (const [word, vec] of Object.entries(embeddings)) {
+                    const screenPt = toScreen(vec);
+                    const isQuery = (word === queryWord);
+                    const color = wordColors[word];
+                    
+                    // 绘制向量线段与箭头
+                    drawArrow(zero, screenPt, isQuery ? color : 'rgba(255, 255, 255, 0.25)', isQuery ? 3 : 1.5);
+                    
+                    // 画终点圆点
+                    ctx.beginPath();
+                    ctx.arc(screenPt.x, screenPt.y, 5, 0, Math.PI * 2);
+                    ctx.fillStyle = color;
+                    ctx.fill();
+                    
+                    // 画标签文本
+                    ctx.fillStyle = isQuery ? '#ffffff' : varColor('--text-muted');
+                    ctx.font = isQuery ? 'bold 13px sans-serif' : '11px sans-serif';
+                    ctx.fillText(word, screenPt.x + 8, screenPt.y - 8);
+                }
+
+                // 绘制夹角扇形弧线
+                for (const [word, vec] of Object.entries(embeddings)) {
+                    if (word !== queryWord) {
+                        const angleQuery = Math.atan2(queryVec.y, queryVec.x);
+                        const angleTarget = Math.atan2(vec.y, vec.x);
+                        
+                        ctx.beginPath();
+                        ctx.strokeStyle = 'rgba(167, 139, 250, 0.2)';
+                        ctx.lineWidth = 1.5;
+                        ctx.setLineDash([2, 2]);
+                        
+                        // 绘制弧线
+                        const radius = 60 + Math.random()*2; // 让线条稍微错开
+                        ctx.arc(zero.x, zero.y, radius, -angleQuery, -angleTarget, angleTarget < angleQuery);
+                        ctx.stroke();
+                        ctx.setLineDash([]);
+                    }
+                }
+            }
+        }
+
+        // 绘制基础网格
+        function drawGrid() {
+            // 背景暗色格线
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([]);
+
+            // 细线
+            for (let x = -6; x <= 6; x += 0.5) {
+                const start = toScreen({ x, y: -6 });
+                const end = toScreen({ x, y: 6 });
+                ctx.beginPath();
+                ctx.moveTo(start.x, start.y);
+                ctx.lineTo(end.x, end.y);
+                ctx.stroke();
+            }
+            for (let y = -6; y <= 6; y += 0.5) {
+                const start = toScreen({ x: -6, y });
+                const end = toScreen({ x: 6, y });
+                ctx.beginPath();
+                ctx.moveTo(start.x, start.y);
+                ctx.lineTo(end.x, end.y);
+                ctx.stroke();
+            }
+
+            // 主刻度格线 (粗一点)
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+            for (let x = -5; x <= 5; x += 1) {
+                if (x === 0) continue;
+                const start = toScreen({ x, y: -6 });
+                const end = toScreen({ x, y: 6 });
+                ctx.beginPath();
+                ctx.moveTo(start.x, start.y);
+                ctx.lineTo(end.x, end.y);
+                ctx.stroke();
+                
+                // 标数字
+                const pos = toScreen({x, y: 0});
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+                ctx.font = '10px monospace';
+                ctx.fillText(x, pos.x - 3, pos.y + 15);
+            }
+            for (let y = -5; y <= 5; y += 1) {
+                if (y === 0) continue;
+                const start = toScreen({ x: -6, y });
+                const end = toScreen({ x: 6, y });
+                ctx.beginPath();
+                ctx.moveTo(start.x, start.y);
+                ctx.lineTo(end.x, end.y);
+                ctx.stroke();
+                
+                // 标数字
+                const pos = toScreen({x: 0, y});
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+                ctx.font = '10px monospace';
+                ctx.fillText(y, pos.x - 15, pos.y + 3);
+            }
+
+            // 绘制主 X、Y 坐标轴
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
+            ctx.lineWidth = 1.5;
+            
+            // X 轴
+            ctx.beginPath();
+            ctx.moveTo(0, center.y);
+            ctx.lineTo(canvas.width, center.y);
+            ctx.stroke();
+
+            // Y 轴
+            ctx.beginPath();
+            ctx.moveTo(center.x, 0);
+            ctx.lineTo(center.x, canvas.height);
+            ctx.stroke();
+        }
+
+        // 绘制 Embedding 专用的坐标系
+        function drawEmbeddingGrid() {
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+            ctx.lineWidth = 1;
+
+            // 网格线
+            for (let i = 0.1; i <= 1.0; i += 0.1) {
+                const screenX = toScreen({ x: i, y: 0 }).x;
+                ctx.beginPath();
+                ctx.moveTo(screenX, embCenter.y);
+                ctx.lineTo(screenX, embCenter.y - embScale);
+                ctx.stroke();
+
+                const screenY = toScreen({ x: 0, y: i }).y;
+                ctx.beginPath();
+                ctx.moveTo(embCenter.x, screenY);
+                ctx.lineTo(embCenter.x + embScale, screenY);
+                ctx.stroke();
+            }
+
+            // 绘制两个主坐标轴
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+            ctx.lineWidth = 2;
+            
+            // X 轴
+            ctx.beginPath();
+            ctx.moveTo(embCenter.x, embCenter.y);
+            ctx.lineTo(embCenter.x + embScale + 20, embCenter.y);
+            ctx.stroke();
+
+            // Y 轴
+            ctx.beginPath();
+            ctx.moveTo(embCenter.x, embCenter.y);
+            ctx.lineTo(embCenter.x, embCenter.y - embScale - 20);
+            ctx.stroke();
+
+            // 轴标签
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 12px sans-serif';
+            ctx.fillText('Is Food? (是食物吗 ->)', embCenter.x + embScale - 50, embCenter.y + 20);
+            
+            ctx.save();
+            ctx.translate(embCenter.x - 20, embCenter.y - embScale + 80);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillText('Is Alive? (有生命吗 ->)', 0, 0);
+            ctx.restore();
+
+            // 标刻度
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+            ctx.font = '10px monospace';
+            ctx.fillText('0.0', embCenter.x - 22, embCenter.y + 14);
+            ctx.fillText('1.0', embCenter.x + embScale - 8, embCenter.y + 14);
+            ctx.fillText('1.0', embCenter.x - 22, embCenter.y - embScale + 4);
+        }
+
+        function drawHandle(point, color) {
+            ctx.beginPath();
+            ctx.arc(point.x, point.y, 6, 0, Math.PI * 2);
+            ctx.fillStyle = color;
+            ctx.fill();
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+        }
+
+        function varColor(varName) {
+            return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+        }
+
+        // 滑动条绑定与更新
+        function setupControls() {
+            const sliders = {
+                'ux': 'slider-ux',
+                'uy': 'slider-uy',
+                'vx': 'slider-vx',
+                'vy': 'slider-vy',
+                'c': 'slider-c'
+            };
+
+            for (const [key, id] of Object.entries(sliders)) {
+                const slider = document.getElementById(id);
+                const badge = document.getElementById(`val-${key}`);
+                
+                slider.addEventListener('input', (e) => {
+                    const val = parseFloat(e.target.value);
+                    badge.innerText = val.toFixed(1);
+                    
+                    if (key === 'ux') u_vec.x = val;
+                    if (key === 'uy') u_vec.y = val;
+                    if (key === 'vx') v_vec.x = val;
+                    if (key === 'vy') v_vec.y = val;
+                    if (key === 'c') c_scalar = val;
+                    
+                    updateReadout();
+                    draw();
+                });
+            }
+        }
+
+        function updateReadout() {
+            document.getElementById('readout-u').innerText = `[${u_vec.x.toFixed(1)}, ${u_vec.y.toFixed(1)}]`;
+            document.getElementById('readout-v').innerText = `[${v_vec.x.toFixed(1)}, ${v_vec.y.toFixed(1)}]`;
+            
+            const w_x = u_vec.x + v_vec.x;
+            const w_y = u_vec.y + v_vec.y;
+            document.getElementById('readout-w').innerText = `[${w_x.toFixed(1)}, ${w_y.toFixed(1)}]`;
+            
+            const sc_x = u_vec.x * c_scalar;
+            const sc_y = u_vec.y * c_scalar;
+            document.getElementById('readout-scaled').innerText = `[${sc_x.toFixed(1)}, ${sc_y.toFixed(1)}]`;
+        }
+
+        // 渲染词嵌入列表及其相似度得分
+        function renderEmbeddingList() {
+            const listContainer = document.getElementById('emb-list');
+            listContainer.innerHTML = '';
+
+            const queryVec = embeddings[queryWord];
+            
+            // 计算每个词与 Query 词的相似度得分
+            const items = [];
+            for (const [word, vec] of Object.entries(embeddings)) {
+                const score = cosineSimilarity(queryVec, vec);
+                items.push({ word, vec, score });
+            }
+
+            // 按相似度得分排序
+            items.sort((a, b) => b.score - a.score);
+
+            items.forEach(item => {
+                const div = document.createElement('div');
+                div.className = `embedding-item ${item.word === queryWord ? 'active' : ''}`;
+                div.onclick = () => {
+                    queryWord = item.word;
+                    renderEmbeddingList();
+                    draw();
+                };
+
+                const tag = document.createElement('div');
+                tag.className = 'word-tag';
+                
+                const dot = document.createElement('div');
+                dot.className = 'color-dot';
+                dot.style.backgroundColor = wordColors[item.word];
+                
+                const label = document.createElement('span');
+                label.innerText = item.word;
+                if (item.word === queryWord) {
+                    label.innerHTML += ' <span style="font-size:10px; color:#60a5fa;">[Query]</span>';
+                }
+
+                tag.appendChild(dot);
+                tag.appendChild(label);
+
+                const scoreText = document.createElement('span');
+                scoreText.className = 'similarity-score';
+                scoreText.innerText = item.score.toFixed(4);
+                scoreText.style.color = item.score > 0.8 ? '#10b981' : item.score > 0.4 ? '#f59e0b' : '#ef4444';
+
+                div.appendChild(tag);
+                div.appendChild(scoreText);
+                listContainer.appendChild(div);
+            });
+        }
+
+        // 拖拽逻辑实现
+        canvas.addEventListener('mousedown', (e) => {
+            if (currentTab !== 'basics') return;
+            
+            const rect = canvas.getBoundingClientRect();
+            const mousePt = {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
+            };
+
+            const screen_u = toScreen(u_vec);
+            const screen_v = toScreen(v_vec);
+
+            // 检查是否靠近 u 或 v 的端点
+            const distU = Math.hypot(mousePt.x - screen_u.x, mousePt.y - screen_u.y);
+            const distV = Math.hypot(mousePt.x - screen_v.x, mousePt.y - screen_v.y);
+
+            if (distU < 15) {
+                dragTarget = 'u';
+            } else if (distV < 15) {
+                dragTarget = 'v';
+            }
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (!dragTarget || currentTab !== 'basics') return;
+
+            const rect = canvas.getBoundingClientRect();
+            const mousePt = {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
+            };
+
+            const mathPt = toMath(mousePt);
+            
+            // 四舍五入到最近的 0.1 单位
+            const newX = Math.max(-5, Math.min(5, Math.round(mathPt.x * 10) / 10));
+            const newY = Math.max(-5, Math.min(5, Math.round(mathPt.y * 10) / 10));
+
+            if (dragTarget === 'u') {
+                u_vec.x = newX;
+                u_vec.y = newY;
+                document.getElementById('slider-ux').value = newX;
+                document.getElementById('slider-uy').value = newY;
+                document.getElementById('val-ux').innerText = newX.toFixed(1);
+                document.getElementById('val-uy').innerText = newY.toFixed(1);
+            } else if (dragTarget === 'v') {
+                v_vec.x = newX;
+                v_vec.y = newY;
+                document.getElementById('slider-vx').value = newX;
+                document.getElementById('slider-vy').value = newY;
+                document.getElementById('val-vx').innerText = newX.toFixed(1);
+                document.getElementById('val-vy').innerText = newY.toFixed(1);
+            }
+
+            updateReadout();
+            draw();
+        });
+
+        window.addEventListener('mouseup', () => {
+            dragTarget = null;
+        });
+
+        // 页面初始化
+        setupControls();
+        updateReadout();
+        renderEmbeddingList();
+        draw();
+
+    </script>
+</body>
+</html>
