@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>§3 Examples 计算机器的例子 · 论可计算数</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body data-file="s3">
+
+<div class="topbar">
+  <div class="bar-in">
+    <a class="brand" href="index.html">论可计算数 <b>1936</b></a>
+    <nav class="seclinks">
+      <a href="index.html" data-nav="idx">导读</a>
+      <a href="s0.html" data-nav="s0">引言</a>
+      <a href="s1.html" data-nav="s1">§1 机器</a>
+      <a href="s2.html" data-nav="s2">§2 定义</a>
+      <a href="s3.html" data-nav="s3" class="cur">§3 例</a>
+      <a href="s4.html" data-nav="s4" class="todo">§4 缩写表</a>
+      <a href="s5.html" data-nav="s5" class="todo">§5 枚举</a>
+      <a href="s6.html" data-nav="s6" class="todo">§6 通用机</a>
+      <a href="s7.html" data-nav="s7" class="todo">§7 细节</a>
+      <a href="s8.html" data-nav="s8" class="todo">§8 对角线</a>
+      <a href="s9.html" data-nav="s9" class="todo">§9 范围</a>
+      <a href="s10.html" data-nav="s10" class="todo">§10 大类</a>
+      <a href="s11.html" data-nav="s11" class="todo">§11 判定</a>
+      <a href="appendix.html" data-nav="apx" class="todo">附录</a>
+    </nav>
+    <div class="viewswitch" role="group" aria-label="阅读模式">
+      <button data-mode="both" class="on">对照</button>
+      <button data-mode="en">原文</button>
+      <button data-mode="cn">中文</button>
+    </div>
+  </div>
+  <div class="progress"><i></i></div>
+</div>
+
+<main class="page" data-sec="s3">
+
+  <header class="sec-head">
+    <div class="sec-no">Section 3</div>
+    <h1><span class="h-en">Examples of Computing Machines</span><span class="h-cn">计算机器的例子</span></h1>
+    <div class="meta"><span class="badge b-todo">待完成 · 本节速览</span>　完整双语精读将在下一阶段替换本页</div>
+    <div class="flor">⁂</div>
+  </header>
+
+  <section class="overview">
+    <div class="ov-tag">本节速览</div>
+    <p>图灵交付了历史上<b>第一批完整的程序</b>。机器 Ⅰ 只有寥寥几个 m-格局，在空白纸带上打印 0101010101…，即数 1/3 的（0/1 数码）十进制展开——它的转移表就是世上第一份程序清单。机器 Ⅱ 打印 0010110111011110…：用 0 分隔、每组渐多的 1。两台机器都完整可运行，图灵逐一推演它们的逐步动作给读者看。</p>
+    <p>本节同时定下两件影响至今的规范：①<b>转移表的标准形式</b>——四列：m-格局 │ 被扫描符号 │ 操作 │ 最终 m-格局；一张表 = 一台机器 = 一个程序。②<b>F-方格 / E-方格</b>——纸带相间分区：F-方格（figures）承载不可擦的数码输出，E-方格（erasable）承载可擦的草稿：输出区与工作区的第一次显式分离。</p>
+    <p><b>现代对照</b>：转移表 ↔ 汇编程序清单；机器 Ⅰ ↔ 计算机科学版的 "Hello, World"；F/E-方格分离 ↔ 代码段与数据段、stdout 与堆内存的分界。</p>
+  </section>
+
+  <div class="tblwrap" style="max-width:960px;margin:0 auto">
+    <table class="tbl">
+      <tr><th style="width:28%">本节关键概念</th><th>一句话</th></tr>
+      <tr><td>machine Ⅰ</td><td>打印 010101…（= 1/3）的第一台例机</td></tr>
+      <tr><td>machine Ⅱ</td><td>打印 0010110111011110… 的第二台例机</td></tr>
+      <tr><td>standard form of table</td><td>四列转移表：m-格局 / 被扫描符号 / 操作 / 最终 m-格局</td></tr>
+      <tr><td>F-squares / E-squares</td><td>数码方格（不可擦输出区）/ 草稿方格（可擦工作区）</td></tr>
+    </table>
+  </div>
+
+  <nav class="pn">
+    <a href="s2.html" rel="prev"><span class="dir">← 上一节</span><div class="t">§2 Definitions 定义</div></a>
+    <a class="nx" href="s4.html" rel="next"><span class="dir">下一节 →</span><div class="t">§4 Abbreviated Tables 缩写表</div></a>
+  </nav>
+
+</main>
+</body>
+</html>

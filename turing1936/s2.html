@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>§2 Definitions 定义 · 论可计算数 · 双语精读</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body data-file="s2">
+
+<div class="topbar">
+  <div class="bar-in">
+    <a class="brand" href="index.html">论可计算数 <b>1936</b></a>
+    <nav class="seclinks">
+      <a href="index.html" data-nav="idx">导读</a>
+      <a href="s0.html" data-nav="s0">引言</a>
+      <a href="s1.html" data-nav="s1">§1 机器</a>
+      <a href="s2.html" data-nav="s2" class="cur">§2 定义</a>
+      <a href="s3.html" data-nav="s3" class="todo">§3 例</a>
+      <a href="s4.html" data-nav="s4" class="todo">§4 缩写表</a>
+      <a href="s5.html" data-nav="s5" class="todo">§5 枚举</a>
+      <a href="s6.html" data-nav="s6" class="todo">§6 通用机</a>
+      <a href="s7.html" data-nav="s7" class="todo">§7 细节</a>
+      <a href="s8.html" data-nav="s8" class="todo">§8 对角线</a>
+      <a href="s9.html" data-nav="s9" class="todo">§9 范围</a>
+      <a href="s10.html" data-nav="s10" class="todo">§10 大类</a>
+      <a href="s11.html" data-nav="s11" class="todo">§11 判定</a>
+      <a href="appendix.html" data-nav="apx" class="todo">附录</a>
+    </nav>
+    <div class="viewswitch" role="group" aria-label="阅读模式">
+      <button data-mode="both" class="on">对照</button>
+      <button data-mode="en">原文</button>
+      <button data-mode="cn">中文</button>
+    </div>
+  </div>
+  <div class="progress"><i></i></div>
+</div>
+
+<main class="page" data-sec="s2">
+
+  <header class="sec-head">
+    <div class="sec-no">Section 2 · pp. 232–233</div>
+    <h1><span class="h-en">Definitions</span><span class="h-cn">定义</span></h1>
+    <div class="meta">五组定义 · 全文的地基 · 术语陷阱高发区</div>
+    <div class="flor">⁂</div>
+  </header>
+
+  <section class="overview">
+    <div class="ov-tag">本节导读</div>
+    <p>半页纸，五组定义，全文的地基：<b>a-机器</b>（确定性）、<b>c-机器</b>（交互性，本文弃用）、<b>计算机器</b>（输出 0/1）、<b>循环 / 非循环</b>（产出性）、<b>可计算序列 / 可计算数</b>（最终研究对象）。本节是"1936 术语 → 现代术语"换算表最密集的一页，每条定义的批注里都给出对应。</p>
+    <p style="font-size:14px;color:var(--muted)">术语警报：circular（循环的）≠ 死循环！见 ¶ 2.4 的解读。另：原刊目录把第三小节写作 <i>Circle and circle-free numbers</i>，正文标题为 <i>Machines</i>，本读本从正文标题。</p>
+  </section>
+
+  <div class="dual lead">
+
+    <div class="pair" id="p2-1">
+      <div class="en"><div class="pnum">¶ 2.1 · Automatic machines</div>
+        <p>If the motions of a machine are <span class="term" data-tip="完全地由格局决定：确定性的定义——§1 的 'possible behaviour' 伏笔在此兑现">wholly determined by the configuration</span> we shall call the machine an <span class="term" data-tip="自动机器：即确定性图灵机">automatic machine</span> (or <i>a-machine</i>).</p>
+      </div>
+      <div class="cn">
+        <p>如果一台机器的运动<b>完全由格局所决定</b>，我们就称它为「<b>自动机器</b>」（automatic machine，或 <b>a-机器</b>）。</p>
+      </div>
+      <aside class="note n-read"><span class="tag">解 读</span>
+        <p>"完全"（wholly）一词兑现了 §1 埋下的伏笔：§1 说格局决定的是"可能的行为"，正是因为存在下一段那种只被"部分决定"的机器。定义自动机器 = 把确定性写进定义：同样的格局，永远同样的下一步。全文此后凡说"机器"，默认指 a-机器。</p>
+      </aside>
+      <aside class="note n-mod"><span class="tag">现代对照</span>
+        <p>即<b>确定性图灵机</b>（DTM），一切计算理论的默认模型。状态转移系统的公理化表述（初态、转移关系、终态）与这里逐字对应：转移关系是<b>函数</b>而非关系，就是"wholly determined"。</p>
+      </aside>
+    </div>
+
+    <div class="pair" id="p2-2">
+      <div class="en"><div class="pnum">¶ 2.2 · Choice machines</div>
+        <p>We might, for some purposes, use machines (<span class="term" data-tip="选择机器：需要外部操作者做决定才能继续的机器；本文不处理">choice machines</span>, or <i>c-machines</i>) whose motion is only partially determined by the configuration (hence the use of the word "possible" in §1). When such a machine reaches one of these ambiguous configurations, it cannot go on until some arbitrary choice has been made by an external operator. This would be the case if we were using machines to deal with axiomatic systems. In this paper I deal only with automatic machines, and will therefore often omit the prefix <i>a-</i>.</p>
+      </div>
+      <div class="cn">
+        <p>在某些用途中，我们可能会使用其运动只<b>部分地</b>由格局决定的机器（「<b>选择机器</b>」，choice machine，或 <b>c-机器</b>）——这正是 §1 中要使用「可能」一词的原因。当这种机器到达某个<b>含混格局</b>（ambiguous configuration）时，它无法继续运行，除非由<b>外部操作者</b>做出某种任意的选择。如果我们用机器来处理公理系统，就会出现这种情况。本文只讨论自动机器，因此常将前缀 <i>a-</i> 省去。</p>
+      </div>
+      <aside class="note n-read"><span class="tag">解 读</span>
+        <p>图灵设想 c-机器的用途是"处理公理系统"：机器在证明搜索中走到岔路口——用哪条公理、走哪条推理规则——必须有人替它选。注意图灵的做法：提出它、说明用途、然后<b>明确声明本文不碰它</b>。这是全文唯一出现"交互"的地方，却埋下一条重要的暗线（见右卡）。</p>
+      </aside>
+      <aside class="note n-mod"><span class="tag">现代对照</span>
+        <p>c-机器有三条现代血脉：①<b>非确定性图灵机</b>（NDTM）——但语义不同：NDTM 自动并行地做所有选择，c-机器等人选；②<b>交互式计算</b>——外部操作者即用户/环境，在线算法、对话式 AI 都是"运动部分由格局决定"的机器；③最直接的一脉：图灵 1939 年论文《基于序数的逻辑系统》把 c-机器发展成<b>预言机机器</b>（oracle machine）——相对可计算性与图灵度理论的起点。</p>
+      </aside>
+    </div>
+
+    <div class="pair" id="p2-3">
+      <div class="en"><div class="pnum">¶ 2.3 · Computing machines</div>
+        <p>If an <i>a</i>-machine prints two kinds of symbols, of which the first kind (called <span class="term" data-tip="数码：输出的 0 和 1。限制在 {0,1} 而非 {0,…,9} 是为了让十进制表示唯一（排除 0.d999… 型歧义）">figures</span>) consists entirely of 0 and 1 (the others being called <span class="term" data-tip="第二类符号：辅助计算的工作符号，即 §1 说的 '草稿'">symbols of the second kind</span>), then the machine will be called a <span class="term" data-tip="计算机器：输出 0/1 数码序列的 a-机器">computing machine</span>.</p>
+      </div>
+      <div class="cn">
+        <p>如果一台 a-机器打印两类符号，其中第一类（称为「<b>数码</b>」）完全由 0 和 1 组成（其余的称为「<b>第二类符号</b>」），那么这台机器就称为「<b>计算机器</b>」（computing machine）。</p>
+      </div>
+      <aside class="note n-read"><span class="tag">解 读</span>
+        <p>两个容易错过的细节。①<b>为什么数码只有 0 和 1，而不是 0 到 9？</b>不只是"二进制"：图灵的数码是<b>十进制</b>展开中的一位，限制每位只能取 0/1，是为了<b>排除 0.d999… = 0.(d+1)000… 型的表示二义性</b>——小数表示唯一，"机器算出的数"才良定义。②"两类符号"= 输出字母表与工作字母表的<b>分离</b>：数码是成果，第二类符号是草稿。任何有限字母表的输出都能编码成 0/1 序列，所以这个限制不损失一般性。</p>
+      </aside>
+      <aside class="note n-mod"><span class="tag">现代对照</span>
+        <p>输出字母表 Σ<sub>out</sub> 与带字母表 Γ 的分离；0/1 序列作为最通用介质的现代版就是<b>二进制与比特流</b>。把一切输出归约为 0/1 序列，也预示了"任何可计算对象（函数、谓词、图、程序本身）都能编码为自然数/比特串"这一当代计算理论的默认操作。</p>
+      </aside>
+    </div>
+
+    <div class="pair" id="p2-4">
+      <div class="en"><div class="pnum">¶ 2.4 · Circular &amp; circle-free</div>
+        <p>If a computing machine never writes down more than a finite number of symbols of the first kind, it will be called <span class="term" data-tip="循环的：只产出有限个数码——注意不是'死循环'的同义词！">circular</span>. Otherwise it is said to be <span class="term" data-tip="非循环的：永远不断打印新数码——'永续产出'而非'永不结束'的贬义">circle-free</span>.</p>
+      </div>
+      <div class="cn">
+        <p>如果一台计算机器写下的第一类符号<b>从不超过有限个</b>，它就称为「<b>循环的</b>」（circular）；否则称为「<b>非循环的</b>」（circle-free）。</p>
+      </div>
+      <aside class="note n-read"><span class="tag">解 读</span>
+        <p><b>全文最容易被误读的一组定义。</b>①"循环的"包括两种死法：陷入死循环（转个不停却不再打印数码），或干脆停住不动——共同点是<b>数码产出有限</b>；②"非循环的"是<b>好事</b>：它永远不断打印新数码，产出无限完整的小数展开——与"死循环"的贬义恰好相反；③为何定义可计算数必须用非循环机器？因为实数的小数展开无限长，一台打三个数码就死的机器给不出确定的数。这条定义是 §8 不可判定定理的靶心：图灵证明的正是"<b>没有机器能判定任意机器是否非循环</b>"——它是停机问题的第一个严格形态。</p>
+      </aside>
+      <aside class="note n-mod"><span class="tag">现代对照</span>
+        <p>circle-free ↔ 计算<b>全函数</b>（total function）的机器 / 处处产出输出的流式转换器；circular ↔ 部分函数（partial function）在某输入上发散（diverge）。经典对位：<span class="q">HALT = {⟨M⟩ : M 最终停机}</span> 是不可判定的；图灵 1936 年证明的命题与之等价。现代可计算分析学改用"任意精度逼近"定义可计算实数（Type-2 可计算性），与图灵的"无限打印小数位"版本等价，但更便于数值计算使用。</p>
+      </aside>
+    </div>
+
+    <div class="pair" id="p2-5">
+      <div class="en"><div class="pnum">¶ 2.5 · Computable sequences &amp; numbers</div>
+        <p>If a machine is circle-free and is supplied with a blank tape, then the sequence of figures which it prints will be called the <span class="term" data-tip="由机器计算的序列：空白纸带起步、非循环打印出的无限 0/1 序列">sequence computed by the machine</span>. A number computed by a machine is defined to be the number whose decimal representation is obtained from that sequence by prefacing it with a decimal point. A sequence is <span class="term" data-tip="可计算序列：某台非循环机器打印的序列">computable</span> if it is computed by some circle-free machine. A number is computable if it differs by an integer from a number computed by a circle-free machine.</p>
+      </div>
+      <div class="cn">
+        <p>如果一台机器是非循环的，并给它一条<b>空白纸带</b>，那么它打印出的数码序列就称为「<b>由这台机器计算的序列</b>」。由机器计算的数定义为：在该序列前面加上一个小数点所得到的那个数。一个序列是<b>可计算的</b>，如果它由某台非循环机器所计算。一个数是<b>可计算的</b>，如果它与某台非循环机器所计算的数只<b>相差一个整数</b>。</p>
+      </div>
+      <aside class="note n-read"><span class="tag">解 读</span>
+        <p>定义链在此闭合：非循环机器 →（空白纸带）→ 无限数码序列 →（加小数点）→ [0,1) 中的数 →（平移整数）→ 一切实数。三个技术细节：①<b>空白纸带</b>：机器无输入——它要算的数全部"写死"在机器表里，程序即数据；②<b>加小数点</b>：序列 010101… 变成 0.010101…（十进制），配合 ¶ 2.3 的 0/1 限制，数的表示唯一；③<b>相差一个整数</b>：机器直接定义的是小数部分，整数部分单独处理——可计算性对整数平移当然不变。</p>
+      </aside>
+      <aside class="note n-mod"><span class="tag">现代对照</span>
+        <p>现代课程的语言：可计算序列 = 递归可枚举的 0/1 序列中能被<b>全函数型</b>机器打印者；可计算实数 = 存在算法以任意给定精度输出其有理逼近。图灵版与现代版等价，但起点不同：图灵从"打印十进制展开"出发，现代数值分析偏好"柯西逼近快于任意给定速率"——后者避免了"打印第 n 位要等指数久"的病态情形，这个差异正是后来<b>可计算分析</b>（computable analysis）课程的入门话题。</p>
+      </aside>
+    </div>
+
+  </div>
+
+  <div class="sec-end">
+    <h2>本节小结 · 定义卡片</h2>
+    <div class="tblwrap">
+      <table class="tbl">
+        <tr><th style="width:20%">定义</th><th style="width:38%">一句话</th><th>现代对应</th></tr>
+        <tr><td>automatic machine</td><td>运动完全由格局决定的机器（a-机器）</td><td>确定性图灵机 DTM</td></tr>
+        <tr><td>choice machine</td><td>到含混格局需外部操作者选择（c-机器，本文不用）</td><td>交互式计算 / 预言机（1939）</td></tr>
+        <tr><td>computing machine</td><td>打印数码（0/1）与第二类符号的 a-机器</td><td>带输出字母表的图灵机</td></tr>
+        <tr><td>circular</td><td>只产出有限个数码（含死循环与停住两种"死法"）</td><td>部分函数 / 发散</td></tr>
+        <tr><td>circle-free</td><td>永续打印数码，产出无限展开</td><td>全函数 / 持续输出的流</td></tr>
+        <tr><td>computable sequence</td><td>某台非循环机器自空白带打印的序列</td><td>可枚举 0/1 序列（全函数型）</td></tr>
+        <tr><td>computable number</td><td>与非循环机器算出的数相差整数</td><td>可计算实数</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <nav class="pn">
+    <a href="s1.html" rel="prev"><span class="dir">← 上一节</span><div class="t">§1 Computing Machines 计算机器</div></a>
+    <a class="nx" href="s3.html" rel="next"><span class="dir">下一节 →</span><div class="t">§3 Examples of Computing Machines 例机</div></a>
+  </nav>
+
+</main>
+</body>
+</html>

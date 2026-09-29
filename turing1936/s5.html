@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>§5 Enumeration 可计算序列的枚举 · 论可计算数</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body data-file="s5">
+
+<div class="topbar">
+  <div class="bar-in">
+    <a class="brand" href="index.html">论可计算数 <b>1936</b></a>
+    <nav class="seclinks">
+      <a href="index.html" data-nav="idx">导读</a>
+      <a href="s0.html" data-nav="s0">引言</a>
+      <a href="s1.html" data-nav="s1">§1 机器</a>
+      <a href="s2.html" data-nav="s2">§2 定义</a>
+      <a href="s3.html" data-nav="s3">§3 例</a>
+      <a href="s4.html" data-nav="s4">§4 缩写表</a>
+      <a href="s5.html" data-nav="s5" class="cur">§5 枚举</a>
+      <a href="s6.html" data-nav="s6" class="todo">§6 通用机</a>
+      <a href="s7.html" data-nav="s7" class="todo">§7 细节</a>
+      <a href="s8.html" data-nav="s8" class="todo">§8 对角线</a>
+      <a href="s9.html" data-nav="s9" class="todo">§9 范围</a>
+      <a href="s10.html" data-nav="s10" class="todo">§10 大类</a>
+      <a href="s11.html" data-nav="s11" class="todo">§11 判定</a>
+      <a href="appendix.html" data-nav="apx" class="todo">附录</a>
+    </nav>
+    <div class="viewswitch" role="group" aria-label="阅读模式">
+      <button data-mode="both" class="on">对照</button>
+      <button data-mode="en">原文</button>
+      <button data-mode="cn">中文</button>
+    </div>
+  </div>
+  <div class="progress"><i></i></div>
+</div>
+
+<main class="page" data-sec="s5">
+
+  <header class="sec-head">
+    <div class="sec-no">Section 5</div>
+    <h1><span class="h-en">Enumeration of Computable Sequences</span><span class="h-cn">可计算序列的枚举</span></h1>
+    <div class="meta"><span class="badge b-todo">待完成 · 本节速览</span>　完整双语精读将在下一阶段替换本页</div>
+    <div class="flor">⁂</div>
+  </header>
+
+  <section class="overview">
+    <div class="ov-tag">本节速览</div>
+    <p>全文的枢纽一步：<b>机器可以变成数</b>。每台机器由一张有限的标准表完全描述；表的每一行按固定规则编码为几个字母（D 加数字标记 m-格局，L、R、N、P、E 等标记操作，分号分行），得到一个字符串——<b>标准描述 S.D</b>（standard description）；再把七个字母逐一替换为 1–7 的数字，得到一个自然数——<b>描述数 D.N</b>（description number）。于是：机器 ↦ 整数，全体机器可排成无穷列表 1(1), 1(2), 1(3), …，全体可计算序列随之可数。</p>
+    <p>这一步同时是三件事：①<b>"程序即数据"的数学化</b>——机器的描述本身可以写在另一台机器的纸带上（§6 通用机的全部前提）；②<b>哥德尔编码的图灵版</b>——把语法对象映射为自然数；③<b>§8 对角线论证的地基</b>——"第 n 台机器"这个说法只有在此之后才有意义。</p>
+    <p><b>现代对照</b>：S.D ↔ 源代码文本；D.N ↔ 可执行文件字节序列；"程序可数，问题无穷" ↔ 现代课堂上"几乎所有函数不可编程"的标准论证；对程序做编号排序，也是编译器、病毒签名、包管理器的日常操作——万物皆数，1936 年已见雏形。</p>
+  </section>
+
+  <div class="tblwrap" style="max-width:960px;margin:0 auto">
+    <table class="tbl">
+      <tr><th style="width:28%">本节关键概念</th><th>一句话</th></tr>
+      <tr><td>standard description (S.D)</td><td>机器表的字母编码——"源代码"</td></tr>
+      <tr><td>description number (D.N)</td><td>把 S.D 的字母换成数字所得的自然数——"可执行文件"</td></tr>
+      <tr><td>1(n)</td><td>描述数为 n 的那台机器；机器从此可编号、可排序</td></tr>
+      <tr><td>complete configuration</td><td>完全格局（带面快照+状态+头位），编码的基本对象</td></tr>
+    </table>
+  </div>
+
+  <nav class="pn">
+    <a href="s4.html" rel="prev"><span class="dir">← 上一节</span><div class="t">§4 Abbreviated Tables 缩写表</div></a>
+    <a class="nx" href="s6.html" rel="next"><span class="dir">下一节 →</span><div class="t">§6 The Universal Computing Machine 通用计算机器</div></a>
+  </nav>
+
+</main>
+</body>
+</html>

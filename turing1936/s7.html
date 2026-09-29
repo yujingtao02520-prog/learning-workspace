@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>§7 Detailed Description of the Universal Machine 通用机的细节 · 论可计算数</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body data-file="s7">
+
+<div class="topbar">
+  <div class="bar-in">
+    <a class="brand" href="index.html">论可计算数 <b>1936</b></a>
+    <nav class="seclinks">
+      <a href="index.html" data-nav="idx">导读</a>
+      <a href="s0.html" data-nav="s0">引言</a>
+      <a href="s1.html" data-nav="s1">§1 机器</a>
+      <a href="s2.html" data-nav="s2">§2 定义</a>
+      <a href="s3.html" data-nav="s3">§3 例</a>
+      <a href="s4.html" data-nav="s4">§4 缩写表</a>
+      <a href="s5.html" data-nav="s5">§5 枚举</a>
+      <a href="s6.html" data-nav="s6">§6 通用机</a>
+      <a href="s7.html" data-nav="s7" class="cur">§7 细节</a>
+      <a href="s8.html" data-nav="s8" class="todo">§8 对角线</a>
+      <a href="s9.html" data-nav="s9" class="todo">§9 范围</a>
+      <a href="s10.html" data-nav="s10" class="todo">§10 大类</a>
+      <a href="s11.html" data-nav="s11" class="todo">§11 判定</a>
+      <a href="appendix.html" data-nav="apx" class="todo">附录</a>
+    </nav>
+    <div class="viewswitch" role="group" aria-label="阅读模式">
+      <button data-mode="both" class="on">对照</button>
+      <button data-mode="en">原文</button>
+      <button data-mode="cn">中文</button>
+    </div>
+  </div>
+  <div class="progress"><i></i></div>
+</div>
+
+<main class="page" data-sec="s7">
+
+  <header class="sec-head">
+    <div class="sec-no">Section 7</div>
+    <h1><span class="h-en">Detailed Description of the Universal Machine</span><span class="h-cn">通用机器的详细描述</span></h1>
+    <div class="meta"><span class="badge b-todo">待完成 · 本节速览</span>　完整双语精读将在下一阶段替换本页</div>
+    <div class="flor">⁂</div>
+  </header>
+
+  <section class="overview">
+    <div class="ov-tag">本节速览</div>
+    <p>图灵把 §6 的宣告兑现为<b>一张完整的状态表</b>——由 con（构造完全格局）、find（在描述带中查找匹配行）、_erase_、_print_ 等骨架表装配而成，占了近一整页。这是历史上第一份"解释器的源代码"：每一行都可以逐条核对，没有任何"显然"或"从略"。图灵甚至复盘了 𝒰 一次循环的完整动作序列，邀请读者手工执行一遍。</p>
+    <p>这一节在 1936 年是给数学家的自信证明——通用机不是修辞性的类比，而是<b>可构造、可验证的对象</b>。证明的"构造性"在后文成为逻辑杠杆：§8 的反证法要求被否定的机器真的能造出来，§7 就是那个"真的能造出来"的担保。</p>
+    <p><b>现代对照</b>：𝒰 的主循环 ↔ 取指—译码—执行；描述带上的行号 ↔ 指令指针；完全格局快照 ↔ 机器状态上下文；逐行核对这张表 ↔ 计算机系学生的"读源码"作业。后来的研究者（如 Marvin Minsky 在《计算：有限与无限机器》中）把 𝒰 压缩到只有寥寥几个状态，但图灵原表的"工程完整度"仍是孤品。</p>
+  </section>
+
+  <div class="tblwrap" style="max-width:960px;margin:0 auto">
+    <table class="tbl">
+      <tr><th style="width:28%">本节关键概念</th><th>一句话</th></tr>
+      <tr><td>U 的完整转移表</td><td>近一整页的骨架表装配——第一份解释器源代码</td></tr>
+      <tr><td>con / find 等骨架件</td><td>构造完全格局、查找匹配行等子程序</td></tr>
+      <tr><td>构造性证明</td><td>通用机真的造得出来——§8 反证法的物质基础</td></tr>
+    </table>
+  </div>
+
+  <nav class="pn">
+    <a href="s6.html" rel="prev"><span class="dir">← 上一节</span><div class="t">§6 Universal Machine 通用计算机器</div></a>
+    <a class="nx" href="s8.html" rel="next"><span class="dir">下一节 →</span><div class="t">§8 Application of the Diagonal Process 对角线法的应用</div></a>
+  </nav>
+
+</main>
+</body>
+</html>
