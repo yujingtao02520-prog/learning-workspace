@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>§10 Examples of Large Classes 大类例证 · 论可计算数</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body data-file="s10">
+
+<div class="topbar">
+  <div class="bar-in">
+    <a class="brand" href="index.html">论可计算数 <b>1936</b></a>
+    <nav class="seclinks">
+      <a href="index.html" data-nav="idx">导读</a>
+      <a href="s0.html" data-nav="s0">引言</a>
+      <a href="s1.html" data-nav="s1">§1 机器</a>
+      <a href="s2.html" data-nav="s2">§2 定义</a>
+      <a href="s3.html" data-nav="s3">§3 例</a>
+      <a href="s4.html" data-nav="s4">§4 缩写表</a>
+      <a href="s5.html" data-nav="s5">§5 枚举</a>
+      <a href="s6.html" data-nav="s6">§6 通用机</a>
+      <a href="s7.html" data-nav="s7">§7 细节</a>
+      <a href="s8.html" data-nav="s8">§8 对角线</a>
+      <a href="s9.html" data-nav="s9">§9 范围</a>
+      <a href="s10.html" data-nav="s10" class="cur">§10 大类</a>
+      <a href="s11.html" data-nav="s11" class="todo">§11 判定</a>
+      <a href="appendix.html" data-nav="apx" class="todo">附录</a>
+    </nav>
+    <div class="viewswitch" role="group" aria-label="阅读模式">
+      <button data-mode="both" class="on">对照</button>
+      <button data-mode="en">原文</button>
+      <button data-mode="cn">中文</button>
+    </div>
+  </div>
+  <div class="progress"><i></i></div>
+</div>
+
+<main class="page" data-sec="s10">
+
+  <header class="sec-head">
+    <div class="sec-no">Section 10</div>
+    <h1><span class="h-en">Examples of Large Classes of Numbers which are Computable</span><span class="h-cn">可计算的大类数目的例子</span></h1>
+    <div class="meta"><span class="badge b-todo">待完成 · 本节速览</span>　完整双语精读将在下一阶段替换本页</div>
+    <div class="flor">⁂</div>
+  </header>
+
+  <section class="overview">
+    <div class="ov-tag">本节速览</div>
+    <p>兑现引言开出的正面支票：<b>"自然会被视为可计算"的大类数，全部可计算</b>。工具箱是"可计算函数"与"可计算变量"的定义，以及一系列<b>封闭性定理</b>：可计算函数的和、积、商（分母非零）、复合仍可计算；可计算序列的可计算速率收敛极限仍可计算。图灵在此节的用语饶有意味——他再次用 <b>computer</b> 指称"做计算的人"，教这位"计算员"如何按部就班地求导数、求积分，从而得出"机器也做得到"。</p>
+    <p>例证清单：一切代数数、π 与 e、对数与指数、正弦与余弦、贝塞尔函数的零点、对数积分…… practically，整本初等函数表都在可计算数的疆域之内。结合 §8，图灵版图完整了：<b>几乎整个"实用数学世界"可计算，而可计算数与实数相比仍是零星孤岛</b>——只是那些不可计算的数在日常计算中从不现身。</p>
+    <p><b>现代对照</b>：本节是<b>可计算分析</b>（computable analysis）的种子田，后经 Grzegorczyk、Pour-El 等人发展成学科；封闭性定理 ↔ 现代符号计算与数值函数库的可靠性论证。工程角度：浮点运算的 IEEE 标准世界，处理的正是"可计算实数的有限精度投影"。</p>
+  </section>
+
+  <div class="tblwrap" style="max-width:960px;margin:0 auto">
+    <table class="tbl">
+      <tr><th style="width:28%">本节关键概念</th><th>一句话</th></tr>
+      <tr><td>computable function / variable</td><td>可计算函数与可计算变量的定义——从"数"升级到"函数"</td></tr>
+      <tr><td>封闭性定理</td><td>四则运算、复合、可计算收敛极限保可计算性</td></tr>
+      <tr><td>大类例证</td><td>代数数、π、e、三角函数、贝塞尔零点等全部可计算</td></tr>
+      <tr><td>computer（人）</td><td>图灵再次用 computer 指"计算员"——教人即教机器</td></tr>
+    </table>
+  </div>
+
+  <nav class="pn">
+    <a href="s9.html" rel="prev"><span class="dir">← 上一节</span><div class="t">§9 Extent 可计算数的范围</div></a>
+    <a class="nx" href="s11.html" rel="next"><span class="dir">下一节 →</span><div class="t">§11 Application to the Entscheidungsproblem 判定问题</div></a>
+  </nav>
+
+</main>
+</body>
+</html>

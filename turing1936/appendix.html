@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>附录与更正启事 · 论可计算数</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body data-file="apx">
+
+<div class="topbar">
+  <div class="bar-in">
+    <a class="brand" href="index.html">论可计算数 <b>1936</b></a>
+    <nav class="seclinks">
+      <a href="index.html" data-nav="idx">导读</a>
+      <a href="s0.html" data-nav="s0">引言</a>
+      <a href="s1.html" data-nav="s1">§1 机器</a>
+      <a href="s2.html" data-nav="s2">§2 定义</a>
+      <a href="s3.html" data-nav="s3">§3 例</a>
+      <a href="s4.html" data-nav="s4">§4 缩写表</a>
+      <a href="s5.html" data-nav="s5">§5 枚举</a>
+      <a href="s6.html" data-nav="s6">§6 通用机</a>
+      <a href="s7.html" data-nav="s7">§7 细节</a>
+      <a href="s8.html" data-nav="s8">§8 对角线</a>
+      <a href="s9.html" data-nav="s9">§9 范围</a>
+      <a href="s10.html" data-nav="s10">§10 大类</a>
+      <a href="s11.html" data-nav="s11">§11 判定</a>
+      <a href="appendix.html" data-nav="apx" class="cur">附录</a>
+    </nav>
+    <div class="viewswitch" role="group" aria-label="阅读模式">
+      <button data-mode="both" class="on">对照</button>
+      <button data-mode="en">原文</button>
+      <button data-mode="cn">中文</button>
+    </div>
+  </div>
+  <div class="progress"><i></i></div>
+</div>
+
+<main class="page" data-sec="apx">
+
+  <header class="sec-head">
+    <div class="sec-no">Appendices · pp. 262–265 &amp; s2-43 (1937) 544–546</div>
+    <h1><span class="h-en">Appendix &amp; A Correction</span><span class="h-cn">附录与更正启事</span></h1>
+    <div class="meta"><span class="badge b-todo">待完成 · 本节速览</span>　完整双语精读将在下一阶段替换本页</div>
+    <div class="flor">⁂</div>
+  </header>
+
+  <section class="overview">
+    <div class="ov-tag">本节速览 · 一：等价性附录</div>
+    <p>论文正文之后，图灵给出一个附录，概述<b>"可计算性"与丘奇"能行可计算性"（λ-可定义性）的等价证明</b>：每个 λ-可定义的序列都是可计算的，反之亦然。两种气质迥异的形式化——一台看得见摸得着的机器，与一套纯符号的函数演算——殊途同归。这个"意外的会师"是丘奇–图灵论题最坚实的经验支柱：如果"可计算"这个直觉概念存在，它大概就长这样。</p>
+    <p><b>现代对照</b>：λ 演算一支后来长成函数式编程与类型论的大树（Lisp、ML、Haskell、柯里–霍华德对应）；图灵机一支长成可计算性与复杂度理论。今天编程语言研究者与计算理论家，仍在这两条 1936 年的河床上工作。</p>
+  </section>
+
+  <section class="overview">
+    <div class="ov-tag">本节速览 · 二：更正启事（1937）</div>
+    <p>论文刊出次年，图灵在同一期刊发表<b>更正启事</b>（经保罗·伯奈斯 Paul Bernays 指出），修正两处技术表述：其一，关于方格可擦性——第二类符号也可能被打印在 F-方格上，此时它们同样可擦，正文"只有 E-方格上的符号可擦"的表述过强；其二，随之对机器标准描述（S.D）的编码约定作出相应调整。<b>主定理完全不受影响</b>。</p>
+    <p>读 1936 年论文必读 1937 年更正——大量流传的引文与复述仍带着被更正的旧表述。这也是科学自我修正文化的早期样本：论文的"权威"不在于作者，而在于公开可核对的论证，错了就登更正。</p>
+    <p><b>本读本施工说明</b>：附录精读阶段将给出"等价性证明概要"的完整双语与逐条笔记，更正启事全文双语，并把更正映射回正文的对应位置（在 §1–§2 的对应段落将出现"†1937 更正"标记）。</p>
+  </section>
+
+  <div class="tblwrap" style="max-width:960px;margin:0 auto">
+    <table class="tbl">
+      <tr><th style="width:28%">本节关键概念</th><th>一句话</th></tr>
+      <tr><td>λ-definability</td><td>丘奇的"能行可计算"定义——与图灵可计算严格等价</td></tr>
+      <tr><td>等价性证明概要</td><td>机器模拟 λ 表达式 / λ 表达式编码机器表</td></tr>
+      <tr><td>A Correction (1937)</td><td>两处技术勘误（可擦性、S.D 约定），主定理无恙</td></tr>
+      <tr><td>P. Bernays</td><td>希尔伯特学派逻辑学家，指出错误者</td></tr>
+    </table>
+  </div>
+
+  <nav class="pn">
+    <a href="s11.html" rel="prev"><span class="dir">← 上一节</span><div class="t">§11 Entscheidungsproblem 判定问题</div></a>
+    <a class="nx" href="index.html"><span class="dir">回到 →</span><div class="t">总导读 · 论文结构地图</div></a>
+  </nav>
+
+</main>
+</body>
+</html>

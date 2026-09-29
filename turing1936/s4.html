@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>§4 Abbreviated Tables 缩写表 · 论可计算数</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body data-file="s4">
+
+<div class="topbar">
+  <div class="bar-in">
+    <a class="brand" href="index.html">论可计算数 <b>1936</b></a>
+    <nav class="seclinks">
+      <a href="index.html" data-nav="idx">导读</a>
+      <a href="s0.html" data-nav="s0">引言</a>
+      <a href="s1.html" data-nav="s1">§1 机器</a>
+      <a href="s2.html" data-nav="s2">§2 定义</a>
+      <a href="s3.html" data-nav="s3">§3 例</a>
+      <a href="s4.html" data-nav="s4" class="cur">§4 缩写表</a>
+      <a href="s5.html" data-nav="s5" class="todo">§5 枚举</a>
+      <a href="s6.html" data-nav="s6" class="todo">§6 通用机</a>
+      <a href="s7.html" data-nav="s7" class="todo">§7 细节</a>
+      <a href="s8.html" data-nav="s8" class="todo">§8 对角线</a>
+      <a href="s9.html" data-nav="s9" class="todo">§9 范围</a>
+      <a href="s10.html" data-nav="s10" class="todo">§10 大类</a>
+      <a href="s11.html" data-nav="s11" class="todo">§11 判定</a>
+      <a href="appendix.html" data-nav="apx" class="todo">附录</a>
+    </nav>
+    <div class="viewswitch" role="group" aria-label="阅读模式">
+      <button data-mode="both" class="on">对照</button>
+      <button data-mode="en">原文</button>
+      <button data-mode="cn">中文</button>
+    </div>
+  </div>
+  <div class="progress"><i></i></div>
+</div>
+
+<main class="page" data-sec="s4">
+
+  <header class="sec-head">
+    <div class="sec-no">Section 4</div>
+    <h1><span class="h-en">Abbreviated Tables</span><span class="h-cn">缩写表（骨架表）</span></h1>
+    <div class="meta"><span class="badge b-todo">待完成 · 本节速览</span>　完整双语精读将在下一阶段替换本页</div>
+    <div class="flor">⁂</div>
+  </header>
+
+  <section class="overview">
+    <div class="ov-tag">本节速览</div>
+    <p>转移表写着写着就会爆炸：稍有规模的机器，完整表格长达数页。图灵的解法是<b>骨架表（skeleton tables）</b>——带参数的缩写记法：一行骨架行在代入具体符号后展开成许多标准行，例如<b>查找</b>某个符号、<b>复制</b>一段方格、在序列末尾<b>追加</b>符号的可复用小机器。§3 的两台例机用骨架表重写，篇幅立刻缩到几行。</p>
+    <p>这些带参数的小机器正是 §6 通用机 U 的<b>零件库</b>：图灵像搭积木一样，用"查找""搬运""比对"组合出 U。这是程序设计方法学的第一课——自底向上、封装复用——比"程序设计"（programming）这个词的流行早了十年。</p>
+    <p><b>现代对照</b>：骨架表 ↔ 宏定义 / 泛型 / 带参数的子程序；展开规则 ↔ 宏展开器；零件组合 ↔ 标准库与模块化装配。Petzold 在《图灵的秘密》里把这一节比作"图灵在写第一批软件工具"。</p>
+  </section>
+
+  <div class="tblwrap" style="max-width:960px;margin:0 auto">
+    <table class="tbl">
+      <tr><th style="width:28%">本节关键概念</th><th>一句话</th></tr>
+      <tr><td>skeleton table</td><td>带参数的缩写转移表，展开后是标准表</td></tr>
+      <tr><td>substitution</td><td>代入规则：参数（符号、格局名）替换后实例化</td></tr>
+      <tr><td>构造零件</td><td>查找、复制、比对、追加等可复用小机器</td></tr>
+      <tr><td>further examples</td><td>打印任意给定序列、加工已有序列的例机</td></tr>
+    </table>
+  </div>
+
+  <nav class="pn">
+    <a href="s3.html" rel="prev"><span class="dir">← 上一节</span><div class="t">§3 Examples 例机</div></a>
+    <a class="nx" href="s5.html" rel="next"><span class="dir">下一节 →</span><div class="t">§5 Enumeration 可计算序列的枚举</div></a>
+  </nav>
+
+</main>
+</body>
+</html>

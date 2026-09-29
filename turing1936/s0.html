@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>引言 Introduction · 论可计算数 · 双语精读</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body data-file="s0">
+
+<div class="topbar">
+  <div class="bar-in">
+    <a class="brand" href="index.html">论可计算数 <b>1936</b></a>
+    <nav class="seclinks">
+      <a href="index.html" data-nav="idx">导读</a>
+      <a href="s0.html" data-nav="s0" class="cur">引言</a>
+      <a href="s1.html" data-nav="s1">§1 机器</a>
+      <a href="s2.html" data-nav="s2">§2 定义</a>
+      <a href="s3.html" data-nav="s3" class="todo">§3 例</a>
+      <a href="s4.html" data-nav="s4" class="todo">§4 缩写表</a>
+      <a href="s5.html" data-nav="s5" class="todo">§5 枚举</a>
+      <a href="s6.html" data-nav="s6" class="todo">§6 通用机</a>
+      <a href="s7.html" data-nav="s7" class="todo">§7 细节</a>
+      <a href="s8.html" data-nav="s8" class="todo">§8 对角线</a>
+      <a href="s9.html" data-nav="s9" class="todo">§9 范围</a>
+      <a href="s10.html" data-nav="s10" class="todo">§10 大类</a>
+      <a href="s11.html" data-nav="s11" class="todo">§11 判定</a>
+      <a href="appendix.html" data-nav="apx" class="todo">附录</a>
+    </nav>
+    <div class="viewswitch" role="group" aria-label="阅读模式">
+      <button data-mode="both" class="on">对照</button>
+      <button data-mode="en">原文</button>
+      <button data-mode="cn">中文</button>
+    </div>
+  </div>
+  <div class="progress"><i></i></div>
+</div>
+
+<main class="page" data-sec="s0">
+
+  <header class="sec-head">
+    <div class="sec-no">Introduction · pp. 230–231</div>
+    <h1><span class="h-en">Introduction</span><span class="h-cn">引言（摘要）</span></h1>
+    <div class="meta">论文宣读于 1936 年 11 月 12 日伦敦数学会 · 图灵 24 岁</div>
+    <div class="flor">⁂</div>
+  </header>
+
+  <section class="overview">
+    <div class="ov-tag">本节导读</div>
+    <p>这五段没有编号，相当于全文的<b>摘要 + 预告片</b>。图灵在半页纸内预告了全部结果：①可计算数的定义（§1–2 展开）；②几乎所有"该可计算"的数都可计算（§9–10 兑现）；③存在可定义却不可计算的数（§8 兑现）；④判定问题不可解（§11 兑现）；⑤与丘奇 λ 演算的等价（附录兑现）。<b>每一段都是一张后文的支票</b>，读完全文回来再看这页，会有"句句有着落"之感。</p>
+  </section>
+
+  <div class="dual lead">
+
+    <div class="pair" id="p0-1">
+      <div class="en"><div class="pnum">¶ 0.1</div>
+        <p>The <span class="term" data-tip="可计算的：全文的中心形容词，§1–2 将给出严格定义">"computable"</span> numbers may be described briefly as the real numbers whose expressions as a decimal are <span class="term" data-tip="由有限手段计算：'有限'二字是全文的锚点——有限的符号、有限的状态、有限的指令表">calculable by finite means</span>. Although the subject of this paper is ostensibly the computable numbers, it is almost equally easy to define and investigate computable functions of an integral variable or a real or computable variable, computable predicates, and so forth. The fundamental problems involved are, however, the same in each case, and I have chosen the computable numbers for explicit treatment as involving the least cumbrous technique. I hope shortly to give an account of the relations of the computable numbers, functions, and so forth to one another. This will include a development of the theory of functions of a real variable expressed in terms of computable numbers.</p>
+      </div>
+      <div class="cn">
+        <p>「可计算的」数，简单说来，就是其十进制展开可由<b>有限手段</b>计算出来的实数。本文表面上以可计算数为题，但用几乎同样容易的方式，也可以定义并研究整变量、实变量或可计算变量的可计算函数、可计算谓词等等。不过，每种情形所涉及的根本问题都是相同的，我之所以选择可计算数来做显式处理，是因为它涉及的技术细节最少。我希望不久之后能给出可计算数、可计算函数等彼此关系的一个说明，其中包括一套用可计算数表述的实变量函数理论。</p>
+      </div>
+      <aside class="note n-read"><span class="tag">解 读</span>
+        <p>开篇第一句就是纲领：<b>"有限手段"（finite means）四个字承担了整篇论文的重量</b>。什么算有限？符号有限个、状态有限种、指令表有限长——这些都要到 §1 才逐个落实为机器的部件。注意图灵的修辞策略：他坦承"数"只是替身，<b>函数、谓词同样可以做全文的中心对象</b>，选"数"纯粹是为了技术细节最少（least cumbrous technique）。</p>
+      </aside>
+      <aside class="note n-phi"><span class="tag">背 景</span>
+        <p>1936 年数学界的主流路线是"函数"：丘奇的 λ-可定义函数、哥德尔–赫尔布兰德的一般递归函数。图灵独辟蹊径，选了"机器在纸带上写出的十进制展开"这一<b>肉眼可见</b>的对象。正因其直观，后来丘奇–图灵论题的辩护几乎全部依赖图灵的表述而非 λ 演算。</p>
+      </aside>
+    </div>
+
+    <div class="pair" id="p0-2">
+      <div class="en"><div class="pnum">¶ 0.2</div>
+        <p>According to my definition, a number is computable if its decimal can be written down by a machine.</p>
+      </div>
+      <div class="cn">
+        <p>按照我的定义，一个数是可计算的，如果它的十进制展开能由<b>一台机器</b>写下来。</p>
+      </div>
+      <aside class="note n-read"><span class="tag">解 读</span>
+        <p>全文最短的一段，只有一句话，却值得单独成段：这是<b>"图灵机"三个字的胚芽</b>。可计算性从此不再锚定在算术化或 λ 表达式上，而是锚定在一台可以想象、可以画在纸上的机器上。"写下来"三个字也重要——机器必须把数码<b>打印在纸带上</b>，这为 §2"非循环机器"的定义（永远不断打印）埋下伏笔。</p>
+      </aside>
+      <aside class="note n-mod"><span class="tag">现代对照</span>
+        <p>现代教科书的等价表述：<b>一个实数可计算，当且仅当存在图灵机在空白带上无限打印其小数展开</b>（Type-2 可计算性理论的基石）。"打印出来的才算"对应今天的"输出流"——计算过程本身不算，输出的数码序列才是结果。</p>
+      </aside>
+    </div>
+
+    <div class="pair" id="p0-3">
+      <div class="en"><div class="pnum">¶ 0.3</div>
+        <p>In §§ 9, 10 I give some arguments with the intention of showing that the computable numbers include all numbers which could naturally be regarded as computable. In particular, I show that certain large classes of numbers are computable. They include, for instance, the real parts of all algebraic numbers, the real parts of the zeros of the Bessel functions, the numbers π, e, etc. The computable numbers do not, however, include all <span class="term" data-tip="可定义的：能用逻辑语言唯一刻画出来的数；可定义 ⊋ 可计算">definable</span> numbers, and an example is given of a definable number which is not computable.</p>
+      </div>
+      <div class="cn">
+        <p>在 §§ 9、10 中，我将给出一些论证，意图表明可计算数包括了所有<b>自然会被视为可计算的</b>数。特别地，我证明了某些大类别的数都是可计算的，例如：所有代数数的实部、贝塞尔函数零点的实部，以及 π、e 等。然而，可计算数并不包括所有<b>可定义的</b>数，文中还给出了一个可定义而不可计算的数的例子。</p>
+      </div>
+      <aside class="note n-read"><span class="tag">解 读</span>
+        <p>论文的两个方向在此同时预告：<b>正面</b>——"机器能算的"覆盖直觉上一切可算的（§9–10，丘奇–图灵论题的雏形）；<b>反面</b>——连"可定义"这么强的逻辑工具都够得着一些机器永远算不出的数（§8 对角线构造的数 β）。"可定义却不可计算"这一对比，正是哥德尔 1931 年"真但不可证"在计算世界的对应物。</p>
+      </aside>
+      <aside class="note n-mod"><span class="tag">现代对照</span>
+        <p>"所有自然会被视为可计算的数" = 丘奇–图灵论题的原始表述，至今是<b>论题而非定理</b>。那个"可定义不可计算数"的现代亲戚：停机问题的特征实数 0′、蔡廷常数 Ω——每一个都定义清晰，却没有任何算法能打印其小数展开。</p>
+      </aside>
+    </div>
+
+    <div class="folio">原刊第 231 页 · p. 231</div>
+
+    <div class="pair" id="p0-4">
+      <div class="en"><div class="pnum">¶ 0.4</div>
+        <p>Although the class of computable numbers is so great, and in many ways similar to the class of real numbers, it is nevertheless <span class="term" data-tip="可数的（enumerable）：能与自然数一一对应，即可列成一张无穷表">enumerable</span>. In § 8 I examine certain arguments which would seem to prove the contrary. By the correct application of one of these arguments, conclusions are reached which are superficially similar to those of Gödel. These results have valuable applications. In particular, it is shown (§11) that the Hilbertian <span class="term" data-tip="判定问题（德文）：希尔伯特纲领的核心问题——是否存在机械步骤判定任何一阶逻辑公式是否可证">Entscheidungsproblem</span> can have no solution.</p>
+      </div>
+      <div class="cn">
+        <p>可计算数类尽管如此庞大，而且在许多方面与实数类相似，它仍然是<b>可数的</b>。在 §8 中，我考察了某些看起来会证明相反结论的论证。通过正确运用其中一个论证，可以得出一些表面上与哥德尔的结果相似的结论。这些结果有重要的应用。特别地，（§11 中）证明了<b>希尔伯特的判定问题不可解</b>。</p>
+      </div>
+      <aside class="note n-read"><span class="tag">解 读</span>
+        <p>实数不可数（康托尔），可计算数却<b>可数</b>——因为机器只有可数多台。于是"几乎所有实数不可计算"。但图灵不直接下结论，而是先在 §8 表演了一个精巧的拆解：有个"看似有理"的论证似乎能枚举全部可计算数（从而对角线造出新可计算数，自相矛盾）——图灵指出错在哪一步，然后把同一个对角线论证<b>用对地方</b>，导出不可判定性。这是全文方法论上最精彩的一段。</p>
+      </aside>
+      <aside class="note n-mod"><span class="tag">现代对照</span>
+        <p>"程序可数而问题无穷，故必有不可解问题"——这是现代可计算性课的第一页论证模板。"表面相似于哥德尔"预示了现代观点：<b>不完备性（逻辑）与不可判定性（计算）是同一枚硬币的两面</b>，经哥德尔编码与图灵机互相翻译。</p>
+      </aside>
+    </div>
+
+    <div class="pair" id="p0-5">
+      <div class="en"><div class="pnum">¶ 0.5</div>
+        <p>In a recent paper Alonzo Church has introduced an idea of <span class="term" data-tip="能行可计算性：丘奇的用语，基于 λ 演算；被证明与图灵可计算性等价">"effective calculability"</span>, which is equivalent to my "computability", but is very differently defined. Church also reaches similar conclusions about the Entscheidungsproblem. The proof of equivalence between "computability" and "effective calculability" is outlined in an appendix to this present paper.</p>
+      </div>
+      <div class="cn">
+        <p>在近期的一篇论文中，阿隆佐·丘奇引入了「能行可计算性」的概念，它与我的「可计算性」等价，但定义方式极为不同。丘奇关于判定问题也得出了相似的结论。「可计算性」与「能行可计算性」的等价性证明，将在本文附录中给出概要。</p>
+      </div>
+      <aside class="note n-phi"><span class="tag">背 景</span>
+        <p>时间线颇为残酷：丘奇的论文 1936 年 4 月刊出，图灵 5 月 28 日才投出本文——<b>优先权已失</b>。图灵的应对堪称典范：补充等价性证明作为附录（本读本的附录页），并在 §9 强调自己的定义"与现实计算类比"而 λ 演算只是形式系统。纽曼仍推荐图灵赴普林斯顿随丘奇读博，1938 年获博士学位。三条路线（丘奇 λ 演算、哥德尔递归函数、图灵机）殊途同归的<b>等价性本身</b>，后来成为丘奇–图灵论题最有力的经验证据。</p>
+      </aside>
+      <aside class="note n-mod"><span class="tag">现代对照</span>
+        <p>两个 1936 年的定义分别统治了现代计算机科学的两个半球：<b>λ 演算</b>成为函数式编程（Lisp、Haskell、类型系统）的数学根基；<b>图灵机</b>成为复杂度理论（可判定性、P/NP）的标准模型。编程语言理论与计算理论，源头是同一场竞赛。</p>
+      </aside>
+      <aside class="note n-phi"><span class="tag">脚 注</span>
+        <p class="q">† Gödel, "Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme, I", Monatshefte Math. Phys., 38 (1931), 173–198.</p>
+        <p class="q">‡ Alonzo Church, "An unsolvable problem of elementary number theory", American J. of Math., 58 (1936), 345–363.</p>
+        <p class="q">§ Alonzo Church, "A note on the Entscheidungsproblem", J. of Symbolic Logic, 1 (1936), 40–41.</p>
+      </aside>
+    </div>
+
+  </div>
+
+  <div class="sec-end">
+    <h2>本节小结</h2>
+    <div class="tblwrap">
+      <table class="tbl">
+        <tr><th style="width:30%">引言中的承诺</th><th style="width:22%">兑现处</th><th>性质</th></tr>
+        <tr><td>可计算数 = 有限手段可算的数</td><td>§1–2</td><td>定义：把"有限"操作化为机器部件</td></tr>
+        <tr><td>自然可计算的数全部可计算</td><td>§9–10</td><td>论题辩护（不可证，靠直观与例证）</td></tr>
+        <tr><td>存在可定义而不可计算的数</td><td>§8</td><td>定理：对角线构造，严格证明</td></tr>
+        <tr><td>判定问题不可解</td><td>§11</td><td>主定理：全文的最终目标</td></tr>
+        <tr><td>与丘奇定义等价</td><td>附录</td><td>桥接证明：两种形式化殊途同归</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <nav class="pn">
+    <a href="index.html" rel="prev"><span class="dir">← 上一页</span><div class="t">总导读</div></a>
+    <a class="nx" href="s1.html" rel="next"><span class="dir">下一节 →</span><div class="t">§1 Computing Machines 计算机器</div></a>
+  </nav>
+
+</main>
+</body>
+</html>

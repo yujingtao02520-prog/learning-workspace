@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>§8 Application of the Diagonal Process 对角线法的应用 · 论可计算数</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body data-file="s8">
+
+<div class="topbar">
+  <div class="bar-in">
+    <a class="brand" href="index.html">论可计算数 <b>1936</b></a>
+    <nav class="seclinks">
+      <a href="index.html" data-nav="idx">导读</a>
+      <a href="s0.html" data-nav="s0">引言</a>
+      <a href="s1.html" data-nav="s1">§1 机器</a>
+      <a href="s2.html" data-nav="s2">§2 定义</a>
+      <a href="s3.html" data-nav="s3">§3 例</a>
+      <a href="s4.html" data-nav="s4">§4 缩写表</a>
+      <a href="s5.html" data-nav="s5">§5 枚举</a>
+      <a href="s6.html" data-nav="s6">§6 通用机</a>
+      <a href="s7.html" data-nav="s7">§7 细节</a>
+      <a href="s8.html" data-nav="s8" class="cur">§8 对角线</a>
+      <a href="s9.html" data-nav="s9" class="todo">§9 范围</a>
+      <a href="s10.html" data-nav="s10" class="todo">§10 大类</a>
+      <a href="s11.html" data-nav="s11" class="todo">§11 判定</a>
+      <a href="appendix.html" data-nav="apx" class="todo">附录</a>
+    </nav>
+    <div class="viewswitch" role="group" aria-label="阅读模式">
+      <button data-mode="both" class="on">对照</button>
+      <button data-mode="en">原文</button>
+      <button data-mode="cn">中文</button>
+    </div>
+  </div>
+  <div class="progress"><i></i></div>
+</div>
+
+<main class="page" data-sec="s8">
+
+  <header class="sec-head">
+    <div class="sec-no">Section 8</div>
+    <h1><span class="h-en">Application of the Diagonal Process</span><span class="h-cn">对角线法的应用</span></h1>
+    <div class="meta"><span class="badge b-todo">待完成 · 本节速览</span>　完整双语精读将在下一阶段替换本页</div>
+    <div class="flor">⁂</div>
+  </header>
+
+  <section class="overview">
+    <div class="ov-tag">本节速览</div>
+    <p>论文的灵魂一击：证明<b>存在没有机器能计算的数</b>。手法是反证 + 对角线。先假设存在一台判定机器 𝓓：输入任何机器的描述数，它都能判定该机器是否非循环。据此图灵组装一台新机器：对第 n 台非循环机器算出的序列，取其第 n 位并取反，拼成"对角线数" β。麻烦来了——若 β 可计算，算出 β 的那台机器必然排在表中某处（设为第 k 台），于是 β 的第 k 位必须等于"第 k 台机器的第 k 位取反"，而那台机器恰是它自己：β<sub>k</sub> ≠ β<sub>k</sub>，矛盾。结论：<b>𝓓 不存在</b>——没有任何机械程序能判定任意机器是否非循环。</p>
+    <p>图灵还先解剖了一个"表面相反"的悖论论证（把可计算序列列成表，对角线似乎造出一个新的可计算序列），指出其谬误：那张"表"本身不是可计算的。<b>同一个对角线，用错则悖论，用对则定理</b>——这是康托尔（1891）、哥德尔（1931）、图灵（1936）三次出手的方法论链条。随后图灵给出第二个定理：不存在机器能判定任意机器是否打印过符号 0——这一条正是 §11 主定理的直接弹药。</p>
+    <p><b>现代对照</b>：这就是<b>停机问题不可判定</b>的第一个证明。现代写法 HALT = {⟨M, w⟩ : M 在 w 上停机} 不可判定，证明骨架与本节逐字对应。它的现代后裔：赖斯定理（程序的一切非平凡语义性质不可判定）、拉斯定理、自复制程序（quine）、以及"杀毒程序无法完美检测一切病毒"的复杂性版本。哥德尔的"这句话不可证"与图灵的"这台机器判定不了自己"，是同一枚自指硬币的两面。</p>
+  </section>
+
+  <div class="tblwrap" style="max-width:960px;margin:0 auto">
+    <table class="tbl">
+      <tr><th style="width:28%">本节关键概念</th><th>一句话</th></tr>
+      <tr><td>判定机器 𝓓（反证假设）</td><td>能判定任意机器是否非循环——被证明不存在</td></tr>
+      <tr><td>对角线数 β</td><td>逐位取反而得的数：可定义、不可计算</td></tr>
+      <tr><td>悖论论证的解剖</td><td>"可计算序列的表"本身不可计算——谬误所在</td></tr>
+      <tr><td>第二定理</td><td>不存在机器能判定任意机器是否打印 0——§11 的弹药</td></tr>
+    </table>
+  </div>
+
+  <nav class="pn">
+    <a href="s7.html" rel="prev"><span class="dir">← 上一节</span><div class="t">§7 Details of U 通用机的细节</div></a>
+    <a class="nx" href="s9.html" rel="next"><span class="dir">下一节 →</span><div class="t">§9 The Extent of the Computable Numbers 可计算数的范围</div></a>
+  </nav>
+
+</main>
+</body>
+</html>

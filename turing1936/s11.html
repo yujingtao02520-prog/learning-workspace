@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>§11 Application to the Entscheidungsproblem 判定问题 · 论可计算数</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body data-file="s11">
+
+<div class="topbar">
+  <div class="bar-in">
+    <a class="brand" href="index.html">论可计算数 <b>1936</b></a>
+    <nav class="seclinks">
+      <a href="index.html" data-nav="idx">导读</a>
+      <a href="s0.html" data-nav="s0">引言</a>
+      <a href="s1.html" data-nav="s1">§1 机器</a>
+      <a href="s2.html" data-nav="s2">§2 定义</a>
+      <a href="s3.html" data-nav="s3">§3 例</a>
+      <a href="s4.html" data-nav="s4">§4 缩写表</a>
+      <a href="s5.html" data-nav="s5">§5 枚举</a>
+      <a href="s6.html" data-nav="s6">§6 通用机</a>
+      <a href="s7.html" data-nav="s7">§7 细节</a>
+      <a href="s8.html" data-nav="s8">§8 对角线</a>
+      <a href="s9.html" data-nav="s9">§9 范围</a>
+      <a href="s10.html" data-nav="s10">§10 大类</a>
+      <a href="s11.html" data-nav="s11" class="cur">§11 判定</a>
+      <a href="appendix.html" data-nav="apx" class="todo">附录</a>
+    </nav>
+    <div class="viewswitch" role="group" aria-label="阅读模式">
+      <button data-mode="both" class="on">对照</button>
+      <button data-mode="en">原文</button>
+      <button data-mode="cn">中文</button>
+    </div>
+  </div>
+  <div class="progress"><i></i></div>
+</div>
+
+<main class="page" data-sec="s11">
+
+  <header class="sec-head">
+    <div class="sec-no">Section 11 · The Finale</div>
+    <h1><span class="h-en">Application to the Entscheidungsproblem</span><span class="h-cn">在判定问题上的应用</span></h1>
+    <div class="meta"><span class="badge b-todo">待完成 · 本节速览</span>　完整双语精读将在下一阶段替换本页</div>
+    <div class="flor">⁂</div>
+  </header>
+
+  <section class="overview">
+    <div class="ov-tag">本节速览</div>
+    <p>终局：把计算问题翻译成逻辑问题，全文的目标在此达成。图灵先回顾一阶谓词演算（他称"受限的希尔伯特泛函演算"）的语法，然后施展核心构造：给每台计算机器 ℳ 配一个一阶逻辑公式 <b>Un(ℳ)</b>——它把"ℳ 的纸带上出现过什么"逐字编码进公式的量词结构。两条引理架起桥梁：引理 1：若符号 0 出现在 ℳ 的某个完全格局中，则 Un(ℳ) 可证；引理 2：若 Un(ℳ) 可证，则 0 出现在某个完全格局中。合起来：<b>"ℳ 打印 0" ⟺ "Un(ℳ) 可证"</b>。</p>
+    <p>最后一击只需三行：假如希尔伯特判定问题有解——存在机械程序判定任何公式是否可证——那么把任意机器 ℳ 编码成 Un(ℳ) 再判定，就能机械地判定"ℳ 是否打印 0"。而 §8 的第二定理已证明这不可能。结论以否定句收束全文：<b>希尔伯特的判定问题不可解</b>。从 1900 年的乐观纲领到 1936 年的两记重击（哥德尔 1931、丘奇与图灵 1936），数学基础研究的航向就此改变。</p>
+    <p><b>现代对照</b>：本节证明的是现代教科书里的"一阶逻辑有效性不可判定"（Church–Turing 定理）。它划定的边界至今有效，边界内则繁花似锦：命题逻辑可判定（SAT 是 NP 完全的鼻祖）、一阶逻辑的可判定片段（两变量逻辑 FO²、单调一元、伯奈斯–舍芬谢德类）、SMT 求解器与模型检测在工业验证中的大规模应用。<b>§11 告诉我们刀在哪里，现代逻辑工程学教你如何贴着刀锋跳舞</b>。图灵用的"归约"手法（把一个问题翻译成另一个）也从此成为不可判定性研究的标准武器。</p>
+  </section>
+
+  <div class="tblwrap" style="max-width:960px;margin:0 auto">
+    <table class="tbl">
+      <tr><th style="width:28%">本节关键概念</th><th>一句话</th></tr>
+      <tr><td>Un(ℳ)</td><td>把机器 ℳ 的行为编码成一阶逻辑公式的构造</td></tr>
+      <tr><td>引理 1 / 引理 2</td><td>"打印 0" 与 "Un(ℳ) 可证" 互为充要</td></tr>
+      <tr><td>归约</td><td>判定问题 ↦ 机器性质判定——现代归约技术的原型</td></tr>
+      <tr><td>主定理</td><td>Entscheidungsproblem 不可解</td></tr>
+    </table>
+  </div>
+
+  <nav class="pn">
+    <a href="s10.html" rel="prev"><span class="dir">← 上一节</span><div class="t">§10 Large Classes 大类例证</div></a>
+    <a class="nx" href="appendix.html" rel="next"><span class="dir">下一节 →</span><div class="t">附录与更正启事 Appendix &amp; Correction</div></a>
+  </nav>
+
+</main>
+</body>
+</html>

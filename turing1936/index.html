@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>论可计算数及其在判定问题上的应用 · 图灵 1936 · 双语精读本</title>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body data-file="idx">
+
+<div class="topbar">
+  <div class="bar-in">
+    <a class="brand" href="index.html">论可计算数 <b>1936</b></a>
+    <nav class="seclinks">
+      <a href="index.html" data-nav="idx" class="cur">导读</a>
+      <a href="s0.html" data-nav="s0">引言</a>
+      <a href="s1.html" data-nav="s1">§1 机器</a>
+      <a href="s2.html" data-nav="s2">§2 定义</a>
+      <a href="s3.html" data-nav="s3" class="todo">§3 例</a>
+      <a href="s4.html" data-nav="s4" class="todo">§4 缩写表</a>
+      <a href="s5.html" data-nav="s5" class="todo">§5 枚举</a>
+      <a href="s6.html" data-nav="s6" class="todo">§6 通用机</a>
+      <a href="s7.html" data-nav="s7" class="todo">§7 细节</a>
+      <a href="s8.html" data-nav="s8" class="todo">§8 对角线</a>
+      <a href="s9.html" data-nav="s9" class="todo">§9 范围</a>
+      <a href="s10.html" data-nav="s10" class="todo">§10 大类</a>
+      <a href="s11.html" data-nav="s11" class="todo">§11 判定</a>
+      <a href="appendix.html" data-nav="apx" class="todo">附录</a>
+    </nav>
+    <div class="viewswitch" role="group" aria-label="阅读模式">
+      <button data-mode="both" class="on">对照</button>
+      <button data-mode="en">原文</button>
+      <button data-mode="cn">中文</button>
+    </div>
+  </div>
+  <div class="progress"><i></i></div>
+</div>
+
+<main class="page" data-sec="idx">
+
+  <!-- ============ 封面 ============ -->
+  <header class="hero">
+    <div class="kick">双语精读 · 空白填补版 · 1936 — 2026</div>
+    <h1>On Computable Numbers,<br>with an Application to the Entscheidungsproblem</h1>
+    <div class="cn-title">论可计算数及其在判定问题上的应用</div>
+    <div class="byline">By A. M. TURING · 阿兰·M·图灵（1912–1954）</div>
+    <div class="chips">
+      <span>Proceedings of the London Mathematical Society, s2-42, pp. 230–265</span>
+      <span>1936 年 5 月 28 日收稿 · 11 月 12 日宣读</span>
+      <span>图灵时年 24 岁</span>
+    </div>
+    <p class="one">
+      一篇论文，同时给出四件事：<b>图灵机</b>（计算的严格模型）、<b>通用图灵机</b>（现代计算机的理论原型）、
+      <b>停机类不可判定问题</b>（计算的能力边界）、以及<b>希尔伯特判定问题不可解</b>的证明（数学的能力边界）。
+      本站提供<b>逐段中英对照</b>、<b>逐段解读笔记</b>与<b>与现代计算机科学的对照</b>——
+      这三个组合目前没有任何正式出版物质提供过。
+    </p>
+  </header>
+
+  <!-- ============ 使用说明 ============ -->
+  <section class="block">
+    <h2>怎么使用这个读本</h2>
+    <div class="sub">HOW TO READ THIS EDITION</div>
+    <p>①顶栏可切换三种阅读模式：<b>对照</b>（左英右中逐段对齐）、<b>原文</b>、<b>中文</b>，选择会自动记忆。②英文底本取自<b>伦敦数学会授权的全文转录</b>，并与中国及欧美多所大学存档的期刊原件影印本逐节核对；原刊页码（如 p. 232）以小字标在段落之间。③每段之下有三种批注卡：</p>
+    <p>
+      <span class="badge b-todo" style="letter-spacing:.28em;color:#b08d2f;border-color:#d9c47e;background:#faf3dd">解读</span>
+      段落本身在说什么、为什么这么写；
+      <span class="badge b-todo" style="letter-spacing:.28em;color:#3e7a5e;border-color:#a9cdba;background:#ecf3ee">现代对照</span>
+      对应现代计算机科学里的哪个概念（状态机、内存、解释器、停机问题……）；
+      <span class="badge b-todo" style="letter-spacing:.28em;color:#6d5a86;border-color:#c3b4d4;background:#f2eef6">背景</span>
+      历史与人物脉络。
+    </p>
+    <p>④正文中带<b>虚线下划线的英文术语</b>可悬停查看中译与说明。⑤本读本分阶段建设：<b>导读、引言、§1、§2 已完成精读</b>，其余章节先挂「本节速览」，随后逐节替换为完整双语精读（见文末路线图）。</p>
+  </section>
+
+  <!-- ============ 历史背景 ============ -->
+  <section class="block">
+    <h2>为什么是 1936 年</h2>
+    <div class="sub">HISTORICAL CONTEXT</div>
+    <div class="tl">
+      <div class="ev"><span class="yr">1900</span><p><b>希尔伯特提出 23 个数学问题</b>，其信念是：数学中不存在不可知的问题——"Wir müssen wissen, wir werden wissen"（我们必须知道，我们必将知道）。</p></div>
+      <div class="ev"><span class="yr">1928</span><p>希尔伯特与阿克曼在《数理逻辑基础》中把<b>判定问题（Entscheidungsproblem）</b>明确表述为：是否存在一个机械步骤，对一阶逻辑的任何公式判定其是否普遍有效（可证）。</p></div>
+      <div class="ev"><span class="yr">1931</span><p><b>哥德尔不完备性定理</b>：任何包含算术的相容形式系统中存在不可判定的命题。判定问题的"能行可判定"希望第一次出现裂缝。</p></div>
+      <div class="ev"><span class="yr">1935</span><p>剑桥，图灵听纽曼（M. H. A. Newman）讲授的可计算性课程，接触到判定问题。同年他 23 岁凭中心极限定理的证明当选国王学院院士。</p></div>
+      <div class="ev"><span class="yr">1936.4</span><p><b>丘奇</b>（Alonzo Church）先图灵数周发表论文，用 λ 演算定义"能行可计算性"，同样证明判定问题不可解。图灵的论文 5 月 28 日才投稿，得知后补充了两种定义等价的证明（即本篇附录）。</p></div>
+      <div class="ev"><span class="yr">1936.11.12</span><p>图灵论文在伦敦数学会宣读，1936–37 年刊出。纽曼推荐图灵赴普林斯顿随丘奇读博。后世把"可计算性的直觉概念 = 图灵机可计算"称为<b>丘奇–图灵论题</b>。</p></div>
+      <div class="ev"><span class="yr">1945 →</span><p>图灵设计 ACE 报告直接引用本文的通用机思想；"存储程序"架构（冯·诺依曼结构）使通用图灵机从数学构造变成 20 世纪最重要的工程。1950 年图灵发表《计算机器与智能》，开启人工智能。</p></div>
+      <div class="ev"><span class="yr">2025</span><p>图灵逝世 70 年后，本文著作权在世界主要法域全部进入公有领域——这也是本读本可以自由制作全文对照版的法律前提。</p></div>
+    </div>
+  </section>
+
+  <!-- ============ 结构地图 ============ -->
+  <section class="block">
+    <h2>论文结构地图</h2>
+    <div class="sub">MAP OF THE PAPER</div>
+    <div class="tblwrap">
+      <table class="tbl">
+        <tr><th style="width:15%">章节</th><th>内容一句话</th><th style="width:22%">关键概念</th><th style="width:12%">状态</th></tr>
+        <tr><td><a href="s0.html">引言</a></td><td>可计算数的非正式定义；宣布三件事：存在不可计算的可定义数、可计算数可数、判定问题无解</td><td>computable by finite means</td><td><span class="badge b-done">已精读</span></td></tr>
+        <tr><td><a href="s1.html">§1 Computing machines</a></td><td>把"一个人在纸上计算"理想化为自动机器：纸带、方格、m-格局、被扫描符号——图灵机诞生</td><td>m-configuration, tape, configuration</td><td><span class="badge b-done">已精读</span></td></tr>
+        <tr><td><a href="s2.html">§2 Definitions</a></td><td>五组正式定义：自动机器、选择机器、计算机器、循环与非循环、可计算序列与可计算数</td><td>a-machine, circle-free, computable</td><td><span class="badge b-done">已精读</span></td></tr>
+        <tr><td><a href="s3.html">§3 Examples</a></td><td>两台具体机器：打印 0101…（=1/3）与打印 0010110111…；F-方格/E-方格分区</td><td>状态转移表, F/E-squares</td><td><span class="badge b-todo">速览</span></td></tr>
+        <tr><td><a href="s4.html">§4 Abbreviated tables</a></td><td>骨架表（缩写记法）与进一步例子：构造"查找""复制"等子程序机器</td><td>skeleton tables</td><td><span class="badge b-todo">速览</span></td></tr>
+        <tr><td><a href="s5.html">§5 Enumeration</a></td><td>每台机器可写成标准描述 S.D 并编号为整数 D.N——机器是可数的，程序即数据</td><td>S.D, D.N</td><td><span class="badge b-todo">速览</span></td></tr>
+        <tr><td><a href="s6.html">§6 Universal machine</a></td><td>存在一台通用机 U：把任何机器的 S.D 放在带上，U 即模拟那台机器——软件与计算机的分离</td><td>universal machine</td><td><span class="badge b-todo">速览</span></td></tr>
+        <tr><td><a href="s7.html">§7 Details of U</a></td><td>U 的完整构造：一整页状态表，相当于手写的解释器源代码</td><td>构造性证明</td><td><span class="badge b-todo">速览</span></td></tr>
+        <tr><td><a href="s8.html">§8 Diagonal process</a></td><td>对角线论证：不存在判定"机器是否非循环"的机器；存在不可计算的可定义数</td><td>diagonal, undecidable</td><td><span class="badge b-todo">速览</span></td></tr>
+        <tr><td><a href="s9.html">§9 Extent</a></td><td>为"这些操作涵盖一切计算"辩护：分析人计算者的"心智状态"，三种论证（直觉/等价/例证）</td><td>states of mind, 论题辩护</td><td><span class="badge b-todo">速览</span></td></tr>
+        <tr><td><a href="s10.html">§10 Large classes</a></td><td>可计算数类的大规模例证：代数数、π、e、贝塞尔函数零点皆可计算；可计算函数的运算封闭性</td><td>computable functions</td><td><span class="badge b-todo">速览</span></td></tr>
+        <tr><td><a href="s11.html">§11 Entscheidungsproblem</a></td><td>把机器编码为一阶逻辑公式 Un(M)：若判定问题可解，则可判定机器是否打印 0——与 §8 矛盾。定理得证</td><td>Un(M), 不可解性</td><td><span class="badge b-todo">速览</span></td></tr>
+        <tr><td><a href="appendix.html">附录 + 更正</a></td><td>1937 年更正启事（技术性勘误）；λ-可定义性与图灵可计算性等价之证明概要</td><td>λ-definability</td><td><span class="badge b-todo">速览</span></td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 论证主线 ============ -->
+  <section class="block">
+    <h2>图灵的论证主线</h2>
+    <div class="sub">THE ARGUMENT IN FIVE STEPS</div>
+    <div class="steps">
+      <div class="st"><b>把"计算"变成机器（§1–2）</b><p>分析一个人在纸上算数的全部动作，抽象出"纸带 + 有限状态 + 读写头"的自动机器。计算 = 机器运行。</p></div>
+      <div class="st"><b>机器可编号（§3–5）</b><p>每台机器由一张有限的状态表完全描述，表可写成字符串（标准描述 S.D），再编成一个自然数（描述数 D.N）。于是所有机器可以列成一张表——机器不比整数多。</p></div>
+      <div class="st"><b>造一台通吃一切的机器（§6–7）</b><p>通用机 U 读入任何机器的 S.D，就能逐指令模拟那台机器。一台机器 = 一切机器——这是"存储程序计算机"与"解释器"的数学原型。</p></div>
+      <div class="st"><b>对角线一击（§8）</b><p>假设有机器能判定任意机器是否"非循环"，就能构造一台对角线机器，它对自己的判定必然自相矛盾。所以：存在没有机器能算的数。计算的疆域第一次被划出边界。</p></div>
+      <div class="st"><b>翻译成逻辑语言（§11）</b><p>给每台机器 M 配一个一阶逻辑公式 Un(M)，"M 打印 0"当且仅当"Un(M) 可证"。若判定问题有解，就能判定 M 是否打印 0——与第 4 步矛盾。希尔伯特的判定问题以否定告终。</p></div>
+    </div>
+  </section>
+
+  <!-- ============ 与现代 CS 总对照 ============ -->
+  <section class="block">
+    <h2>1936 ↔ 现代计算机科学</h2>
+    <div class="sub">THEN AND NOW</div>
+    <div class="tblwrap">
+      <table class="tbl">
+        <tr><th style="width:26%">图灵 1936</th><th style="width:30%">现代对应</th><th>说明</th></tr>
+        <tr><td>m-configuration（m-格局）</td><td>CPU 内部状态 / 寄存器值</td><td>有限的内部状态集合，q₁, …, q_R</td></tr>
+        <tr><td>tape（纸带）与 squares（方格）</td><td>内存（RAM）/ 存储单元</td><td>一维离散、可随机寻址的存储抽象</td></tr>
+        <tr><td>scanned square / scanned symbol</td><td>当前内存地址（MAR）/ 取出的操作数</td><td>机器任何时刻只"直接意识到"一个方格</td></tr>
+        <tr><td>configuration（格局 = 状态 + 被扫描符号）</td><td>转移函数的输入对 (state, symbol)</td><td>现代图灵机定义 δ: Q×Γ→Q×Γ×{L,R} 的输入侧</td></tr>
+        <tr><td>operations（打印/擦除/左移/右移/换格局）</td><td>指令集（ISA）：写、删、跳转、条件转移</td><td>§1 列出的就是一套极简而完备的指令集</td></tr>
+        <tr><td>状态转移表（table）</td><td>程序本身</td><td>表即程序；改变表 = 换程序</td></tr>
+        <tr><td>figures（数码 0/1）与 rough notes（草稿）</td><td>输出流 vs. 工作内存/临时变量</td><td>输出区（F-方格）不可擦，草稿区（E-方格）可擦</td></tr>
+        <tr><td>S.D 标准描述</td><td>源代码 / 程序文本</td><td>机器的字母-数字编码，A–E 七字母表</td></tr>
+        <tr><td>D.N 描述数</td><td>可执行文件的字节序列 / 哥德尔编码</td><td>程序即整数——可数性论证与"程序即数据"的基石</td></tr>
+        <tr><td>universal machine 通用机 U</td><td>存储程序计算机 / 解释器 / 虚拟机</td><td>冯·诺依曼 1945 年架构的理论前身；U 的状态表即一个解释器</td></tr>
+        <tr><td>circle-free（非循环）</td><td>不停机持续输出 = 全函数/可判定语言</td><td>注意与现代"停机/不停机"术语方向相反，见 §2 注</td></tr>
+        <tr><td>c-machine 选择机器</td><td>非确定性计算 / 交互式计算 / 外部预言机</td><td>图灵 1939 年"预言机"概念的伏笔</td></tr>
+        <tr><td>§8 对角线论证</td><td>停机问题不可判定 / 赖斯定理</td><td>一切"程序性质不可判定"证明的祖先</td></tr>
+        <tr><td>§9 "心智状态"有限</td><td>丘奇–图灵论题 / 认知计算主义</td><td>论题至今不可证明，但 90 年无一反例</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 译名表 ============ -->
+  <section class="block">
+    <h2>主要术语译名表</h2>
+    <div class="sub">GLOSSARY OF TRANSLATIONS</div>
+    <div class="tblwrap">
+      <table class="tbl">
+        <tr><th style="width:30%">原文</th><th style="width:20%">本站译名</th><th>说明 / 常见他译</th></tr>
+        <tr><td>computable number</td><td>可计算数</td><td>标准译名，无异议</td></tr>
+        <tr><td>computing machine</td><td>计算机器</td><td>指打印 0/1 数码的机器；"计算机"留给 modern computer 语境</td></tr>
+        <tr><td>automatic machine (a-machine)</td><td>自动机器（a-机器）</td><td>运动完全由格局决定的确定性机器</td></tr>
+        <tr><td>choice machine (c-machine)</td><td>选择机器（c-机器）</td><td>运动部分由外部操作者的选择决定</td></tr>
+        <tr><td>m-configuration</td><td>m-格局</td><td>也译 m-配置、m-状态；即现代术语"内部状态"</td></tr>
+        <tr><td>configuration</td><td>格局</td><td>=（m-格局，被扫描符号）二元组；也译"布局""组态"</td></tr>
+        <tr><td>tape / square</td><td>纸带 / 方格</td><td>square 也译"格子"</td></tr>
+        <tr><td>scanned square / scanned symbol</td><td>被扫描方格 / 被扫描符号</td><td>也译"注视方格/符号"</td></tr>
+        <tr><td>figures (of the first kind)</td><td>数码（第一类符号）</td><td>专指输出的 0 和 1；Petzold 中译本亦作"数字"</td></tr>
+        <tr><td>symbols of the second kind</td><td>第二类符号</td><td>辅助计算的工作符号（草稿）</td></tr>
+        <tr><td>circular / circle-free</td><td>循环的 / 非循环的</td><td>注意：与"死循环"不是一回事，见 §2 解读</td></tr>
+        <tr><td>computable sequence</td><td>可计算序列</td><td>由某台非循环机器打印出的 0/1 序列</td></tr>
+        <tr><td>standard description (S.D)</td><td>标准描述</td><td>机器表的字符串编码——"源代码"</td></tr>
+        <tr><td>description number (D.N)</td><td>描述数</td><td>机器表对应的自然数编码——"可执行文件"</td></tr>
+        <tr><td>universal computing machine</td><td>通用计算机器</td><td>即通用图灵机；早期文献亦译"万能机"</td></tr>
+        <tr><td>skeleton table</td><td>骨架表</td><td>§4 的缩写记法，类似宏/子程序</td></tr>
+        <tr><td>F-squares / E-squares</td><td>F-方格 / E-方格</td><td>数码区（f-figures）/ 可擦草稿区（e-erasable）</td></tr>
+        <tr><td>Entscheidungsproblem</td><td>判定问题</td><td>德文原词保留在标题中，正文译"判定问题"</td></tr>
+        <tr><td>effectively calculable</td><td>能行可计算的</td><td>丘奇的用语；与图灵"可计算的"被证明等价</td></tr>
+        <tr><td>λ-definable</td><td>λ-可定义</td><td>丘奇 λ 演算意义下的可计算</td></tr>
+        <tr><td>complete configuration</td><td>完全格局</td><td>含带面快照的格局，§5–6 编码的对象</td></tr>
+        <tr><td>descriptive function</td><td>描述函数</td><td>§10 中从机器到输出的函数记号</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 阅读路线 ============ -->
+  <section class="block">
+    <h2>三条阅读路线</h2>
+    <div class="sub">THREE READING PATHS</div>
+    <div class="routes">
+      <div class="route">
+        <h3>四十分钟速览<small>ESSENTIALS</small></h3>
+        <p>读本页导读 → <a href="s0.html">引言</a> → <a href="s1.html">§1</a> → <a href="s6.html">§6 速览</a> → <a href="s8.html">§8 速览</a> → <a href="s11.html">§11 速览</a>。跳过所有技术表格，抓住"图灵机 → 通用机 → 不可判定 → 判定问题无解"的主干。</p>
+        <p class="sec-list">Intro · §1 · §6 · §8 · §11</p>
+      </div>
+      <div class="route">
+        <h3>半天精读<small>CLOSE READING</small></h3>
+        <p>在速览路线上加入 <a href="s2.html">§2</a> 的全部定义（现代术语的对应关系都在这一节）、<a href="s3.html">§3</a> 的两台例机与转移表、<a href="s9.html">§9</a> 对丘奇–图灵论题的经典辩护。你将看到论文的论证肌肉，而不只是骨架。</p>
+        <p class="sec-list">Intro · §1–3 · §5–6 · §8–9 · §11</p>
+      </div>
+      <div class="route">
+        <h3>完整研读<small>FULL STUDY</small></h3>
+        <p>十一节 + 附录全部精读，包括 §7 通用机的完整状态表与 §11 的逻辑公式构造。适合可计算性理论课程或论文写作需要。这也是本读本的最终完成形态——分阶段施工中。</p>
+        <p class="sec-list">All sections + Appendices</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 底本与版权 ============ -->
+  <section class="block">
+    <h2>底本、校勘与版权</h2>
+    <div class="sub">TEXTUAL BASIS &amp; COPYRIGHT</div>
+    <p><b>英文底本</b>：Proceedings of the London Mathematical Society, series 2, vol. 42 (1936–37), pp. 230–265，及 1937 年 vol. 43 pp. 544–546 的更正启事。电子文本以 abelard.org 经伦敦数学会授权发布的全文转录为基础，逐节比对杜克大学、弗吉尼亚大学等处存档的期刊影印件校勘（abelard 转录在 §2 处存在渲染缺漏，该节以影印本 OCR 复核后录入）；原刊页码随文标注为 <span class="q">p. 2xx</span>。</p>
+    <p><b>中文译文</b>：本站原创翻译，非出版译本。术语选择以中文计算理论教材通行译法为准，重要术语首次出现时附英文原词，全表见上方译名表。</p>
+    <p><b>版权</b>：图灵 1954 年逝世，本文著作权已于 2025 年在主要法域全部期满，进入公有领域。中文译文、批注与页面设计以 CC BY 4.0 提供，转载请注明出处。</p>
+    <p style="margin-top:20px"><b>引用格式</b>：<span class="q">A. M. Turing, "On Computable Numbers, with an Application to the Entscheidungsproblem", Proc. London Math. Soc. s2-42 (1936–37), 230–265.</span></p>
+  </section>
+
+  <nav class="pn">
+    <a href="index.html"><span class="dir">本页</span><div class="t">总导读</div></a>
+    <a class="nx" href="s0.html" rel="next"><span class="dir">进入论文 →</span><div class="t">引言 Introduction（pp. 230–231）</div></a>
+  </nav>
+
+</main>
+</body>
+</html>
